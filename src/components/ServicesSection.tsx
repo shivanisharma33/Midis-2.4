@@ -61,15 +61,15 @@ export const ServicesSection = () => {
   }, []);
 
   useEffect(() => {
-    if (!sectionRef.current || isMobile) return;
+    if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
       const items = gsap.utils.toArray<HTMLElement>(".service-item");
       items.forEach((item, index) => {
         ScrollTrigger.create({
           trigger: item,
-          start: "top 60%",
-          end: "bottom 40%",
+          start: isMobile ? "top 70%" : "top 60%", // Earlier trigger on mobile
+          end: isMobile ? "bottom 40%" : "bottom 40%",
           onEnter: () => setActiveIndex(index),
           onEnterBack: () => setActiveIndex(index),
         });
@@ -139,7 +139,7 @@ export const ServicesSection = () => {
 
                 {/* 2. REVEALED CONTENT */}
                 <AnimatePresence>
-                  {(isActive || isMobile) && (
+                  {isActive && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
@@ -151,7 +151,7 @@ export const ServicesSection = () => {
                       }}
                       className="overflow-hidden"
                     >
-                      <div className="flex flex-col md:flex-row gap-10 md:gap-16 pt-12 pb-6">
+                      <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-16 pt-12 pb-6">
 
                         {/* LEFT CONTENT: Desc + Tags */}
                         <div className="w-full md:w-[60%] flex flex-col justify-end md:pl-[20%]">

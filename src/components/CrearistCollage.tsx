@@ -19,14 +19,15 @@ export default function CrearistCollage() {
   const imgMotionRef = useRef<HTMLDivElement | null>(null);
   const cardStackRef = useRef<HTMLDivElement | null>(null);
   const imgStack2Ref = useRef<HTMLDivElement | null>(null);
+  const imgMotionMobileRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const ctx = gsap.context(() => {
-      const isMobile = window.innerWidth < 768;
+    const mm = gsap.matchMedia();
 
+    mm.add("(min-width: 768px)", () => {
       /* ===============================
          INITIAL SETUP
       =============================== */
@@ -91,8 +92,8 @@ export default function CrearistCollage() {
       tl.to(imgMotionRef.current, {
         left: 0,
         top: 0,
-        width: isMobile ? "100%" : "50vw",
-        height: isMobile ? "50%" : "100vh",
+        width: "50vw",
+        height: "100vh",
         x: 0,
         y: 0,
         scale: 1,
@@ -154,39 +155,81 @@ export default function CrearistCollage() {
         duration: 5,
         ease: "power2.out"
       }, "<+0.5");
-    }, container);
+    });
 
-    return () => ctx.revert();
+    mm.add("(max-width: 767px)", () => {
+      gsap.from(imgStack2Ref.current, {
+        scrollTrigger: {
+          trigger: imgStack2Ref.current,
+          start: "top 85%",
+          end: "center center",
+          scrub: 1,
+        },
+        y: 100,
+        scale: 0.9,
+        opacity: 0,
+        transformOrigin: "bottom center",
+        ease: "power2.out"
+      });
+
+      // First Card (Motion Portrait) Animation for Mobile
+      gsap.from(imgMotionMobileRef.current, {
+        scrollTrigger: {
+          trigger: imgMotionMobileRef.current,
+          start: "top 85%",
+          end: "center center",
+          scrub: 1,
+        },
+        y: 100,
+        scale: 0.9,
+        opacity: 0,
+        transformOrigin: "bottom center",
+        ease: "power2.out"
+      });
+    });
+
+    return () => mm.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full h-screen bg-white overflow-hidden">
+    <section ref={containerRef} className="relative w-full min-h-screen md:h-screen bg-white overflow-x-hidden md:overflow-hidden flex flex-col md:block">
 
       {/* 1. LAYER: TEXT (BEHIND IMAGES - z-0) */}
       <div
         ref={titleGroupRef}
-        className="absolute inset-0 flex flex-col items-center justify-center z-0 select-none pointer-events-none text-center"
+        className="relative md:absolute inset-0 flex flex-col items-center justify-center z-0 select-none md:pointer-events-none text-center py-24 md:py-0"
       >
-        <span className="text-[8px] md:text-[10px] font-bold tracking-[0.25em] text-black/30 mb-6 uppercase">
+        <span className="text-[10px] md:text-[10px] font-bold tracking-[0.25em] text-black/30 mb-6 uppercase">
           TOP RATED GLOBAL DIGITAL AGENCY
         </span>
-        <h2 className="text-[clamp(2.5rem,7vw,6rem)] font-bold text-black leading-[1.1] uppercase tracking-tight mb-10">
+        <h2 className="text-[clamp(1.4rem,5.5vw,4rem)] md:text-[clamp(2.5rem,7vw,6rem)] font-bold text-black leading-[1.1] uppercase tracking-tight mb-10">
           BUILDING BRANDS,<br />
           DRIVING GROWTH,<br />
           GROWING BEYOND LIMITS
         </h2>
 
         {/* Scroll Indicator */}
-        <div className="w-10 h-10 rounded-full border border-black/5 flex items-center justify-center bg-white/50 backdrop-blur-sm mt-4">
+        <div className="w-10 h-10 rounded-full border border-black/5 flex items-center justify-center bg-white/50 backdrop-blur-sm mt-4 hidden md:flex">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M7 13l5 5 5-5M12 6v12" />
           </svg>
         </div>
       </div>
 
-      {/* 2. LAYER: COLLAGE ASSETS (IN FRONT - z-10+) */}
-      <div className="absolute inset-0 flex items-center justify-center z-10">
+      {/* MOBILE ONLY: FIRST CARD (Motion Portrait) */}
+      <div className="md:hidden w-full px-0 mb-12">
+        <div ref={imgMotionMobileRef} className="w-full h-[50vh] overflow-hidden">
+          <img
+            src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/6826e26267d669b873e710d1_image%20(42)-p-800.webp"
+            alt="Motion Portrait"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
 
+      {/* 2. LAYER: COLLAGE ASSETS (IN FRONT - z-10+) */}
+      <div className="hidden md:flex absolute inset-0 items-center justify-center z-10">
+        {/* ... (Existing Desktop Images) ... */}
         {/* Guy Portrait */}
         <div
           ref={imgGuyRef}
@@ -251,12 +294,12 @@ export default function CrearistCollage() {
       {/* 3. LAYER: FINAL MILESTONES (In Front) */}
       <div
         ref={milestonesRef}
-        className="absolute inset-0 flex z-40 pointer-events-none"
+        className="relative md:absolute inset-0 flex z-40 md:pointer-events-none"
       >
         <div className="hidden md:block w-1/2 h-full" />
-        <div className="w-full md:w-1/2 h-full bg-white flex flex-col items-center justify-center pointer-events-auto shadow-[-20px_0_50px_rgba(0,0,0,0.05)]">
+        <div className="w-full md:w-1/2 h-full bg-white flex flex-col items-center justify-center pointer-events-auto shadow-[-20px_0_50px_rgba(0,0,0,0.05)] py-16 md:py-0">
           <div className="w-full max-w-2xl px-8 md:px-12 lg:px-16">
-            <h2 className="milestone-reveal text-[clamp(2rem,4.5vw,4rem)] font-bold text-black leading-[1.1] mb-12 tracking-tight uppercase">
+            <h2 className="milestone-reveal text-[clamp(1.4rem,5.5vw,4rem)] md:text-[clamp(2rem,4.5vw,4rem)] font-bold text-black leading-[1.1] mb-12 tracking-tight uppercase">
               RESULTS THAT<br />
               POWER REAL<br />
               BUSINESS GROWTH
@@ -303,18 +346,18 @@ export default function CrearistCollage() {
 
       <div
         ref={cardStackRef}
-        className="absolute inset-0 flex z-50 pointer-events-none"
+        className="relative md:absolute inset-0 flex flex-col md:flex-row z-50 md:pointer-events-none"
       >
-        <div ref={imgStack2Ref} className="hidden md:block w-1/2 h-full overflow-hidden">
+        <div ref={imgStack2Ref} className="block w-full h-[50vh] md:w-1/2 md:h-full overflow-hidden">
           <img
             src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/680771c045ce1011349f054e_Milestone-p-1080.webp"
             alt="Stack 2"
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="w-full md:w-1/2 h-full bg-white flex flex-col items-center justify-center pointer-events-auto shadow-[-20px_0_50px_rgba(0,0,0,0.05)]">
+        <div className="w-full md:w-1/2 h-full bg-white flex flex-col items-center justify-center pointer-events-auto shadow-[-20px_0_50px_rgba(0,0,0,0.05)] py-16 md:py-0">
           <div className="w-full max-w-2xl px-8 md:px-12 lg:px-16">
-            <h2 className="text-[clamp(2rem,4.5vw,4rem)] font-bold text-black leading-[1.1] mb-12 tracking-tight uppercase">
+            <h2 className="text-[clamp(1.4rem,5.5vw,4rem)] md:text-[clamp(2rem,4.5vw,4rem)] font-bold text-black leading-[1.1] mb-12 tracking-tight uppercase">
               WHY TOP BRANDS<br />
               TRUST OUR<br />
               EXPERTISE
@@ -359,7 +402,7 @@ export default function CrearistCollage() {
         </div>
       </div>
 
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none z-0 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+      <div className="hidden md:block absolute inset-0 opacity-[0.02] pointer-events-none z-0 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:50px_50px]"></div>
     </section>
   );
 }
