@@ -49,10 +49,11 @@ const services = [
 ];
 
 export const ServicesSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
 
+  /* ================= MOBILE CHECK ================= */
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
@@ -60,20 +61,42 @@ export const ServicesSection = () => {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  /* ================= SCROLL LOGIC ================= */
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
       const items = gsap.utils.toArray<HTMLElement>(".service-item");
-      items.forEach((item, index) => {
+
+      if (!isMobile) {
+        // 🖥 DESKTOP — SLOW PINNED STORY SCROLL
         ScrollTrigger.create({
-          trigger: item,
-          start: isMobile ? "top 70%" : "top 60%", // Earlier trigger on mobile
-          end: isMobile ? "bottom 40%" : "bottom 40%",
-          onEnter: () => setActiveIndex(index),
-          onEnterBack: () => setActiveIndex(index),
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${items.length * 130}%`, // ⬅ scroll speed control
+          pin: true,
+          scrub: 1.3,
+          anticipatePin: 1,
+          onUpdate: (self) => {
+            const index = Math.min(
+              items.length - 1,
+              Math.floor(self.progress * items.length)
+            );
+            setActiveIndex(index);
+          },
         });
-      });
+      } else {
+        // 📱 MOBILE — LIGHT & LAG-FREE
+        items.forEach((item, index) => {
+          ScrollTrigger.create({
+            trigger: item,
+            start: "top 75%",
+            end: "bottom 55%",
+            onEnter: () => setActiveIndex(index),
+            onEnterBack: () => setActiveIndex(index),
+          });
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -82,7 +105,7 @@ export const ServicesSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0B0B0B] py-24 md:py-32 antialiased text-white"
+      className="bg-[#0B0B0B] py-24 md:py-32 text-white antialiased"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
         {services.map((service, index) => {
@@ -91,103 +114,84 @@ export const ServicesSection = () => {
           return (
             <div
               key={service.number}
-              className={`service-item border-white/5 transition-all duration-[1200ms] ease-in-out border-t ${isActive ? "border-white/20" : "border-white/5"
+              className={`service-item border-t transition-all duration-[1200ms] ${isActive ? "border-white/20" : "border-white/5"
                 }`}
             >
               <div className="py-12 md:py-16">
 
-                {/* 1. TITLE & NUMBER HEADER */}
-                <div className="relative w-full flex justify-between items-end group cursor-pointer pb-2">
-
+                {/* HEADER */}
+                <div className="relative flex justify-between items-end pb-2 group">
                   <div className="relative">
-                    {/* Number positioned at the top left of the title as in reference image */}
-                    <span className={`
-                      absolute -top-1 -left-4 md:-top-3 md:-left-10
-                      text-[10px] md:text-[16px] font-bold tracking-tight transition-all duration-[1200ms]
-                      ${isActive ? "text-white/40" : "text-white/5"}
-                    `}>
+                    <span
+                      className={`absolute -top-1 -left-4 md:-top-3 md:-left-10 text-[10px] md:text-[16px] font-bold transition-all duration-[1200ms] ${isActive ? "text-white/40" : "text-white/5"
+                        }`}
+                    >
                       {service.number}
                     </span>
+
                     <h3
-                      className={`
-                        font-black tracking-tighter uppercase transition-colors duration-[1200ms] 
-                        text-[clamp(2.5rem,12vw,10rem)] leading-[0.8] mb-0 select-none
+                      className={`font-black uppercase tracking-tighter transition-colors duration-[1200ms]
+                        text-[clamp(2.5rem,12vw,10rem)] leading-[0.8]
                         ${isActive ? "text-[#909090]" : "text-[#151515]"}
-                        group-hover:text-[#909090]
                       `}
                     >
                       {service.title}
                     </h3>
                   </div>
 
-                  {/* Circular Button */}
+                  {/* ARROW */}
                   <div
-                    className={`
-                      mb-6 w-10 h-10 md:w-20 md:h-20 rounded-full border border-white/10 
-                      flex items-center justify-center transition-all duration-[1200ms] ease-out
-                      ${isActive ? "opacity-100 scale-100 rotate-0 bg-white text-black" : "opacity-0 scale-75"}
+                    className={`mb-6 w-10 h-10 md:w-20 md:h-20 rounded-full border border-white/10
+                      flex items-center justify-center transition-all duration-[1200ms]
+                      ${isActive ? "opacity-100 scale-100 bg-white text-black" : "opacity-0 scale-75"}
                     `}
                   >
-                    <svg
-                      width="28" height="28" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-                    >
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M7 7L17 17M17 17H7M17 17V7" />
                     </svg>
                   </div>
                 </div>
 
-                {/* 2. REVEALED CONTENT */}
+                {/* CONTENT */}
                 <AnimatePresence>
                   {isActive && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      onAnimationComplete={() => ScrollTrigger.refresh()}
-                      transition={{
-                        duration: 1.5,
-                        ease: [0.16, 1, 0.3, 1]
-                      }}
+                      transition={{ duration: isMobile ? 0.8 : 1.4, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
+                      onAnimationComplete={() => ScrollTrigger.refresh()}
                     >
                       <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-16 pt-12 pb-6">
 
-                        {/* LEFT CONTENT: Desc + Tags */}
-                        <div className="w-full md:w-[60%] flex flex-col justify-end md:pl-[20%]">
-                          <motion.p
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 1.2, delay: 0.2 }}
-                            className="text-sm md:text-base text-white/50 leading-relaxed max-w-md mb-10"
-                          >
+                        {/* TEXT */}
+                        <div className="w-full md:w-[60%] md:pl-[20%]">
+                          <p className="text-sm md:text-base text-white/50 max-w-md mb-10 leading-relaxed">
                             {service.description}
-                          </motion.p>
+                          </p>
 
-                          <motion.div
-                            initial={{ y: 15, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 1.2, delay: 0.3 }}
-                            className="flex flex-wrap gap-3"
-                          >
+                          <div className="flex flex-wrap gap-3">
                             {service.tags.map((tag) => (
                               <span
                                 key={tag}
-                                className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold border border-white/20 px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300 cursor-default"
+                                className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold
+                                  border border-white/20 px-4 py-2 rounded-full
+                                  hover:bg-white hover:text-black transition-all"
                               >
                                 {tag}
                               </span>
                             ))}
-                          </motion.div>
+                          </div>
                         </div>
 
-                        {/* RIGHT CONTENT: Image */}
+                        {/* IMAGE */}
                         <div className="w-full md:w-[40%] flex justify-end">
                           <motion.div
                             initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
                             animate={{ clipPath: "inset(0 0 0% 0)", opacity: 1 }}
-                            transition={{ duration: 2 }}
-                            className="w-full aspect-[4/3] md:aspect-[1.5/1] overflow-hidden rounded-sm"
+                            transition={{ duration: 1.8 }}
+                            className="w-full aspect-[4/3] overflow-hidden rounded-sm"
                           >
                             <img
                               src={service.image}
@@ -210,3 +214,15 @@ export const ServicesSection = () => {
     </section>
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
