@@ -1,21 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { ArrowUpRight, Plus, ChevronDown, Star, Zap, Target, Users, ArrowDown } from "lucide-react";
+import { ArrowUpRight, Plus, ChevronDown, Layout, Smartphone, Search, Share2, Megaphone, PenTool, Zap, Target, Shield, Globe, MessageSquare } from "lucide-react";
 import { ScrollingVideoZoom } from "@/components/ScrollingVideoZoom";
 
 /* ================= TYPES & DATA ================= */
 
-const awards = [
-  { title: "AWARDS", year: "2024", image: "/images/port/12.webp" },
-  { title: "BEST UI/UX", year: "2024", image: "https://cdn.prod.website-files.com/67a1ba0a889270647730e779/67e63d10d18f7f9092d93761_Img%20(5)-p-500.webp" },
-  { title: "DEVELOPMENT", year: "2023", image: "https://cdn.prod.website-files.com/67a1ba0a889270647730e779/68079e60d8c8c72fd621dfd8_Video-p-1600.webp" },
-  { title: "(IBMP) AWARDS", year: "2023", image: "https://cdn.prod.website-files.com/67a1ba0a889270647730e779/67e63c7ba173bf929fe05bd6_Img%20(2)-p-500.webp" },
-  { title: "ANIMATION", year: "2022", image: "https://cdn.prod.website-files.com/67a1ba0a889270647730e779/67e63c81162c2494e4bed2f6_Img%20(3)%20(1)-p-500.webp" },
-];
+
 
 const faqs = [
   { q: "WHAT SERVICES DO YOU OFFER?", a: "We provide end-to-end creative solutions including UI/UX Design, Branding, Web Development, and Digital Strategy." },
@@ -25,6 +19,74 @@ const faqs = [
 ];
 
 const partners = ["FORBES", "TECHCRUNCH", "WIRED", "NYT", "Awwwards", "Dribbble"];
+
+const digitalServices = [
+  {
+    icon: Layout,
+    title: "Web Development",
+    description: "We build responsive, lightning-fast websites that increase your business visibility and sales.",
+    gradient: "from-blue-500 to-cyan-500"
+  },
+  {
+    icon: PenTool,
+    title: "Graphic Designing",
+    description: "We design premium logos, and brand visuals that define your identity and elevate your impact.",
+    gradient: "from-purple-500 to-pink-500"
+  },
+  {
+    icon: Smartphone,
+    title: "App Development",
+    description: "Robust mobile applications for iOS and Android that deliver seamless user experiences.",
+    gradient: "from-orange-500 to-red-500"
+  },
+  {
+    icon: Search,
+    title: "SEO Optimization",
+    description: "Dominate search rankings and drive organic traffic with our strategic SEO solutions.",
+    gradient: "from-green-500 to-emerald-500"
+  },
+  {
+    icon: Megaphone,
+    title: "Digital Marketing",
+    description: "Data-driven marketing strategies that maximize ROI across Google and Meta platforms.",
+    gradient: "from-indigo-500 to-violet-500"
+  },
+  {
+    icon: Share2,
+    title: "Social Media",
+    description: "Build a powerful social presence with engaging content and strategic community management.",
+    gradient: "from-pink-500 to-rose-500"
+  }
+];
+
+const whyChooseUs = [
+  {
+    icon: Shield,
+    title: "Dedicated Support & Expertise",
+    description: "Experts not only solve problems but also provide valuable insights, guiding better decision-making and innovation.",
+    stat: "24/7"
+  },
+  {
+    icon: Zap,
+    title: "Cutting-Edge Tools",
+    description: "These innovations leverage advanced technologies like artificial intelligence, machine learning, and automation.",
+    stat: "AI"
+  },
+  {
+    icon: Target,
+    title: "Transparency & Communication",
+    description: "Transparency ensures that information is shared openly, creating a sense of accountability and inclusiveness.",
+    stat: "100%"
+  }
+];
+
+const processSteps = [
+  { number: "01", title: "Discovery", description: "Deep research into your brand, market, and competition." },
+  { number: "02", title: "Strategy", description: "Develop a tailored roadmap aligned with your goals." },
+  { number: "03", title: "Design", description: "Create stunning visuals that captivate your audience." },
+  { number: "04", title: "Development", description: "Build robust, scalable solutions with clean code." },
+  { number: "05", title: "Launch", description: "Deploy with precision and ongoing support." }
+];
 
 /* ================= COMPONENTS ================= */
 
@@ -119,9 +181,9 @@ const GrowthSection = () => {
           </h2>
 
           <p className="text-gray-500 text-base md:text-lg max-w-2xl leading-relaxed font-medium">
-            We specialize in accelerating startup growth by building strong, memorable brands
-            with a strategic blend of creativity and precision, delivering impactful solutions
-            that resonate with your target audience and drive success.
+            We are a results-driven digital agency offering end-to-end creative and technical services.
+            Whether you're launching a new startup or running an established business, we help you build
+            a powerful online presence, drive measurable growth, and expand your reach across global markets.
           </p>
         </div>
 
@@ -166,6 +228,255 @@ const GrowthSection = () => {
           </div>
         </div>
 
+      </div>
+    </section>
+  );
+};
+
+/* NEW: Digital Services Section */
+const DigitalServicesSection = () => {
+  return (
+    <section className="bg-[#0C0E12] py-24 md:py-32 px-6 lg:px-24 overflow-hidden">
+      <div className="max-w-[1500px] mx-auto">
+        {/* Header */}
+        <div className="text-left mb-16 md:mb-24">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-white/40 font-black text-[11px] tracking-[0.3em] uppercase block mb-6"
+          >
+            Digital Services
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-black uppercase text-white leading-[0.9] tracking-tighter"
+          >
+            The Drive <span className="text-orange-500">Real</span><br />
+            Business Growth
+          </motion.h2>
+        </div>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {digitalServices.map((service, index) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="group relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-white/10 hover:border-white/30 transition-all duration-500 hover:bg-white/10 cursor-pointer overflow-hidden"
+            >
+              {/* Gradient Glow */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl`} />
+
+              {/* Icon */}
+              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                <service.icon className="w-7 h-7 text-white" />
+              </div>
+
+              {/* Content */}
+              <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-white mb-4 group-hover:text-orange-400 transition-colors">
+                {service.title}
+              </h3>
+              <p className="text-white/50 text-sm md:text-base leading-relaxed mb-6">
+                {service.description}
+              </p>
+
+              {/* CTA */}
+              <div className="flex items-center gap-2 text-white/40 group-hover:text-orange-400 transition-colors">
+                <span className="text-xs font-bold uppercase tracking-widest">Explore</span>
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* REDESIGNED: Why Choose Us Section */
+const WhyChooseUsSection = () => {
+  return (
+    <section className="bg-white py-24 md:py-40 px-6 lg:px-24">
+      <div className="max-w-[1500px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+          {/* Left Content */}
+          <div className="space-y-10">
+            <div>
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 text-black/60 text-[10px] font-bold uppercase tracking-widest mb-6"
+              >
+                <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+                Our Advantage
+              </motion.span>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="text-5xl md:text-7xl lg:text-8xl font-black uppercase text-[#0C0E12] leading-[0.85] tracking-tighter"
+              >
+                Why We Are <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Different</span>
+              </motion.h2>
+            </div>
+
+            <p className="text-lg md:text-xl text-gray-500 leading-relaxed max-w-xl">
+              We don't just build products; we build digital legacies. Our approach combines data-driven strategy with world-class design execution.
+            </p>
+
+            <div className="flex flex-col gap-6">
+              {whyChooseUs.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.15 }}
+                  className="group flex gap-6 items-start p-6 rounded-2xl border border-black/5 hover:border-black/10 hover:bg-gray-50 transition-all duration-500 cursor-pointer"
+                >
+                  <div className="w-14 h-14 rounded-full bg-[#0C0E12] text-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-black uppercase tracking-tight text-[#0C0E12] mb-2">{item.title}</h3>
+                    <p className="text-sm text-gray-500 leading-relaxed max-w-md">{item.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Visual Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative h-[600px] lg:h-[800px] w-full rounded-[40px] overflow-hidden"
+          >
+            <img
+              src="/images/Futuristic Portrait.webp"
+              className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              alt="Why Choose Us"
+            />
+            {/* Overlay badge */}
+            <div className="absolute top-10 right-10 w-32 h-32 bg-orange-500 rounded-full flex items-center justify-center text-center p-4 shadow-2xl animate-[spin_10s_linear_infinite]">
+              <span className="text-[10px] font-black uppercase text-white tracking-widest leading-tight">
+                Premium<br />Digital<br />Agency
+              </span>
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* NEW: Process Section */
+const ProcessSection = () => {
+  const [activeStep, setActiveStep] = useState(0);
+
+  return (
+    <section className="bg-[#f8f8f8] py-24 md:py-32 px-6 lg:px-24">
+      <div className="max-w-[1500px] mx-auto">
+        {/* Header */}
+        <div className="text-left mb-16 md:mb-20">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-black/40 font-black text-[11px] tracking-[0.3em] uppercase block mb-6"
+          >
+            Our Process
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-black uppercase text-[#0C0E12] leading-[0.9] tracking-tighter"
+          >
+            How We <span className="text-orange-500">Work</span>
+          </motion.h2>
+        </div>
+
+        {/* Process Steps */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 md:gap-6">
+          {processSteps.map((step, index) => (
+            <motion.div
+              key={step.number}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              onMouseEnter={() => setActiveStep(index)}
+              className={`relative p-8 md:p-10 rounded-3xl cursor-pointer transition-all duration-500 ${activeStep === index
+                ? 'bg-[#0C0E12] text-white'
+                : 'bg-white hover:bg-[#0C0E12] hover:text-white'
+                }`}
+            >
+              {/* Step Number */}
+              <span className={`text-5xl md:text-6xl font-black ${activeStep === index ? 'text-orange-500' : 'text-[#0C0E12]/10'
+                } transition-colors`}>
+                {step.number}
+              </span>
+
+              {/* Content */}
+              <h3 className={`text-xl md:text-2xl font-black uppercase tracking-tight mt-6 mb-3 transition-colors ${activeStep === index ? 'text-white' : 'text-[#0C0E12] group-hover:text-white'
+                }`}>
+                {step.title}
+              </h3>
+              <p className={`text-sm leading-relaxed transition-colors ${activeStep === index ? 'text-white/60' : 'text-[#0C0E12]/50'
+                }`}>
+                {step.description}
+              </p>
+
+              {/* Active Indicator */}
+              {activeStep === index && (
+                <motion.div
+                  layoutId="activeIndicator"
+                  className="absolute top-4 right-4 w-3 h-3 rounded-full bg-orange-500"
+                />
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* NEW: Stats Ribbon */
+const StatsRibbon = () => {
+  const stats = [
+    { value: "500+", label: "Projects Completed" },
+    { value: "98%", label: "Client Satisfaction" },
+    { value: "15+", label: "Years Experience" },
+    { value: "50+", label: "Team Members" },
+  ];
+
+  return (
+    <section className="bg-[#0C0E12] py-16 md:py-20 border-y border-white/10">
+      <div className="max-w-[1500px] mx-auto px-6 lg:px-24">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="text-center"
+            >
+              <span className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter">
+                {stat.value}
+              </span>
+              <p className="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mt-3">
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -307,85 +618,9 @@ const AboutMarquee = () => {
   );
 };
 
-const StatsCollage = () => {
-  return (
-    <section className="bg-white py-24 md:py-48 px-6 lg:px-24">
-      <div className="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 h-auto md:h-[1200px]">
-        {/* Box 1: Left Top Stat */}
-        <div className="md:col-span-4 bg-gray-50 rounded-[32px] md:rounded-[60px] p-8 md:p-16 flex flex-col justify-between text-left">
-          <div className="aspect-square w-full rounded-[24px] md:rounded-[40px] overflow-hidden mb-8 md:mb-12 shadow-3xl">
-            <img src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/67e63d69162c2494e4bf9c3e_img%20(17)-p-500.webp" className="w-full h-full object-cover" />
-          </div>
-          <div>
-            <h3 className="text-6xl md:text-[8rem] font-black tracking-tighter leading-none italic">365<span className="not-italic text-orange-600">+</span></h3>
-            <p className="uppercase text-[9px] md:text-[10px] font-black tracking-[0.5em] text-gray-400 mt-4">Design Portfolio</p>
-          </div>
-        </div>
 
-        {/* Box 2: Right Main Image */}
-        <div className="md:col-span-8 bg-gray-50 rounded-[32px] md:rounded-[60px] overflow-hidden group shadow-2xl min-h-[300px] md:min-h-0">
-          <img src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/68079e60d8c8c72fd621dfd8_Video-p-1600.webp" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-all duration-2000" />
-        </div>
 
-        {/* Box 3: Left Bottom Image + Stat */}
-        <div className="md:col-span-5 bg-gray-50 rounded-[32px] md:rounded-[60px] overflow-hidden relative group min-h-[400px] md:min-h-0 text-left">
-          <img src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/67e63d10d18f7f9092d93761_Img%20(5)-p-500.webp" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-8 md:p-16 flex flex-col justify-end">
-            <h3 className="text-white text-6xl md:text-8xl font-black tracking-tighter italic">98%</h3>
-            <p className="text-white/40 uppercase text-[9px] md:text-[10px] font-black tracking-[0.4em] mt-4">Client Happiness</p>
-          </div>
-        </div>
 
-        {/* Box 4: Tall Branding Showcase */}
-        <div className="md:col-span-7 bg-gray-50 rounded-[32px] md:rounded-[60px] overflow-hidden group shadow-3xl border border-black/5 min-h-[400px] md:min-h-0">
-          <img src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/67e63c7ba173bf929fe05bd6_Img%20(2)-p-500.webp" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1500" />
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const AwardsSection = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  return (
-    <section className="bg-white py-24 md:py-48 px-6 lg:px-24">
-      <h2 className="text-[10vw] md:text-[12vw] font-black uppercase text-[#0C0E12] tracking-tighter leading-none mb-16 md:mb-32 text-left">AWARDS</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center border-t border-black/10">
-        <div className="divide-y divide-black/10 w-full">
-          {awards.map((award, i) => (
-            <div
-              key={i}
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className="group flex items-center justify-between py-8 md:py-12 transition-all duration-500 cursor-pointer overflow-visible relative"
-            >
-              <div className="flex items-center gap-6 md:gap-12 group-hover:translate-x-6 transition-transform">
-                <span className="text-[10px] font-black text-gray-400">({i + 1})</span>
-                <h3 className="text-2xl md:text-6xl font-black uppercase tracking-tighter text-[#0C0E12]/40 group-hover:text-[#0C0E12] transition-colors">{award.title}</h3>
-              </div>
-              <Plus className={`transition-all duration-500 ${hoveredIndex === i ? 'rotate-45 text-orange-600 scale-125 md:scale-150' : 'text-gray-300'}`} size={24} />
-            </div>
-          ))}
-        </div>
-
-        <div className="relative aspect-square w-full rounded-[32px] md:rounded-[60px] overflow-hidden bg-[#f8f8f8] shadow-6xl">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={hoveredIndex ?? 'default'}
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.6 }}
-              src={hoveredIndex !== null ? awards[hoveredIndex].image : awards[0].image}
-              className="w-full h-full object-cover"
-            />
-          </AnimatePresence>
-        </div>
-      </div>
-    </section>
-  );
-};
 
 const DualCTA = () => {
   return (
@@ -452,13 +687,25 @@ const AboutPage = () => {
       <AboutHero />
       <GrowthSection />
 
+      {/* NEW: Digital Services */}
+      <DigitalServicesSection />
+
+      {/* NEW: Why Choose Us */}
+      <WhyChooseUsSection />
+
       <ScrollingVideoZoom />
+
+      {/* NEW: Process Section */}
+      <ProcessSection />
+
+      {/* NEW: Stats Ribbon */}
+      <StatsRibbon />
 
       <CreativeSection />
       <ReasonsSection />
       <AboutMarquee />
-      <StatsCollage />
-      <AwardsSection />
+
+
 
       {/* Partner Ticker */}
       <div className="bg-white py-20 border-y border-black/5 overflow-hidden flex grayscale opacity-30">

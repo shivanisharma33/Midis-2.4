@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,18 +51,51 @@ const services = [
 export const ServicesSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const lenisRef = useRef<Lenis | null>(null);
+
+  useEffect(() => {
+    // Initialize Lenis smooth scroll
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    lenisRef.current = lenis;
+
+    // Connect Lenis to GSAP ScrollTrigger
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Add Lenis to GSAP ticker
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      lenis.destroy();
+      gsap.ticker.remove((time) => {
+        lenis.raf(time * 1000);
+      });
+    };
+  }, []);
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Pin the section and track scroll progress
+      // Pin the section and track scroll progress with smooth scrub
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
         end: () => `+=${services.length * 100}%`,
         pin: true,
-        scrub: true,
+        scrub: 1.5, // Smoother scrub value
         onUpdate: (self) => {
           // Calculate which card should be active based on scroll progress
           const newIndex = Math.min(
