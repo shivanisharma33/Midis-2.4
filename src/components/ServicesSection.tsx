@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, AnimatePresence } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,178 +50,166 @@ const services = [
 export const ServicesSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
 
-  /* ================= MOBILE CHECK ================= */
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  /* ================= SCROLL LOGIC ================= */
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      const items = gsap.utils.toArray<HTMLElement>(".service-item");
-
-      if (!isMobile) {
-        // 🖥 DESKTOP — SLOW PINNED STORY SCROLL
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "top top",
-          end: `+=${items.length * 130}%`, // ⬅ scroll speed control
-          pin: true,
-          scrub: 1.3,
-          anticipatePin: 1,
-          onUpdate: (self) => {
-            const index = Math.min(
-              items.length - 1,
-              Math.floor(self.progress * items.length)
-            );
-            setActiveIndex(index);
-          },
-        });
-      } else {
-        // 📱 MOBILE — LIGHT & LAG-FREE
-        items.forEach((item, index) => {
-          ScrollTrigger.create({
-            trigger: item,
-            start: "top 75%",
-            end: "bottom 55%",
-            onEnter: () => setActiveIndex(index),
-            onEnterBack: () => setActiveIndex(index),
-          });
-        });
-      }
+      // Pin the section and track scroll progress
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: () => `+=${services.length * 100}%`,
+        pin: true,
+        scrub: true,
+        onUpdate: (self) => {
+          // Calculate which card should be active based on scroll progress
+          const newIndex = Math.min(
+            services.length - 1,
+            Math.floor(self.progress * services.length)
+          );
+          setActiveIndex(newIndex);
+        },
+      });
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [isMobile]);
+  }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0B0B0B] py-24 md:py-32 text-white antialiased"
+      className="relative bg-[#0B0B0B] h-screen w-full overflow-hidden"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
-        {services.map((service, index) => {
-          const isActive = activeIndex === index;
-
-          return (
+      {/* Cards Container */}
+      <div className="relative h-full w-full">
+        {services.map((service, index) => (
+          <div
+            key={service.number}
+            className="absolute inset-0 h-full w-full transition-all duration-700 ease-out"
+            style={{
+              opacity: activeIndex === index ? 1 : 0,
+              visibility: activeIndex === index ? "visible" : "hidden",
+              zIndex: activeIndex === index ? 10 : 1,
+            }}
+          >
+            {/* Card Background */}
             <div
-              key={service.number}
-              className={`service-item border-t transition-all duration-[1200ms] ${isActive ? "border-white/20" : "border-white/5"
-                }`}
+              className="h-full w-full"
+              style={{
+                background: "linear-gradient(180deg, #0c0c0c 0%, #141414 100%)",
+              }}
             >
-              <div className="py-12 md:py-16">
-
-                {/* HEADER */}
-                <div className="relative flex justify-between items-end pb-2 group">
+              {/* Content Container */}
+              <div className="h-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col justify-center">
+                {/* Header Row */}
+                <div className="flex justify-between items-start mb-10 md:mb-14">
                   <div className="relative">
-                    <span
-                      className={`absolute -top-1 -left-4 md:-top-3 md:-left-10 text-[10px] md:text-[16px] font-bold transition-all duration-[1200ms] ${isActive ? "text-white/40" : "text-white/5"
-                        }`}
-                    >
+                    <span className="block text-sm md:text-lg font-bold text-white/40 mb-3 tracking-[0.25em]">
                       {service.number}
                     </span>
-
                     <h3
-                      className={`font-black uppercase tracking-tighter transition-colors duration-[1200ms]
-                        text-[clamp(2.5rem,12vw,10rem)] leading-[0.8]
-                        ${isActive ? "text-[#909090]" : "text-[#151515]"}
-                      `}
+                      className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter uppercase text-white leading-[0.9] transition-all duration-500"
+                      style={{
+                        transform: activeIndex === index ? "translateY(0)" : "translateY(30px)",
+                        opacity: activeIndex === index ? 1 : 0,
+                      }}
                     >
                       {service.title}
                     </h3>
                   </div>
 
-                  {/* ARROW */}
+                  {/* Arrow Button */}
                   <div
-                    className={`mb-6 w-10 h-10 md:w-20 md:h-20 rounded-full border border-white/10
-                      flex items-center justify-center transition-all duration-[1200ms]
-                      ${isActive ? "opacity-100 scale-100 bg-white text-black" : "opacity-0 scale-75"}
-                    `}
+                    className="flex-shrink-0 w-14 h-14 md:w-20 md:h-20 rounded-full bg-white text-black flex items-center justify-center transition-all duration-500 hover:scale-110 hover:rotate-45 cursor-pointer shadow-xl"
+                    style={{
+                      transform: activeIndex === index ? "scale(1)" : "scale(0.8)",
+                      opacity: activeIndex === index ? 1 : 0,
+                    }}
                   >
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="md:w-8 md:h-8"
+                    >
                       <path d="M7 7L17 17M17 17H7M17 17V7" />
                     </svg>
                   </div>
                 </div>
 
-                {/* CONTENT */}
-                <AnimatePresence>
-                  {isActive && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: isMobile ? 0.8 : 1.4, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
-                      onAnimationComplete={() => ScrollTrigger.refresh()}
-                    >
-                      <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-16 pt-12 pb-6">
+                {/* Main Content Area */}
+                <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
+                  {/* Left Column: Description + Tags */}
+                  <div
+                    className="w-full md:w-1/2 transition-all duration-700 delay-100"
+                    style={{
+                      transform: activeIndex === index ? "translateY(0)" : "translateY(40px)",
+                      opacity: activeIndex === index ? 1 : 0,
+                    }}
+                  >
+                    <p className="text-base md:text-lg lg:text-xl text-white/60 leading-relaxed max-w-lg mb-8">
+                      {service.description}
+                    </p>
 
-                        {/* TEXT */}
-                        <div className="w-full md:w-[60%] md:pl-[20%]">
-                          <p className="text-sm md:text-base text-white/50 max-w-md mb-10 leading-relaxed">
-                            {service.description}
-                          </p>
+                    <div className="flex flex-wrap gap-3">
+                      {service.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tag}
+                          className="text-xs md:text-sm uppercase tracking-[0.1em] font-semibold border border-white/25 px-4 py-2.5 rounded-full hover:bg-white hover:text-black transition-all duration-300 cursor-pointer text-white/70"
+                          style={{
+                            transitionDelay: `${150 + tagIndex * 50}ms`,
+                            transform: activeIndex === index ? "translateY(0)" : "translateY(20px)",
+                            opacity: activeIndex === index ? 1 : 0,
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
 
-                          <div className="flex flex-wrap gap-3">
-                            {service.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold
-                                  border border-white/20 px-4 py-2 rounded-full
-                                  hover:bg-white hover:text-black transition-all"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* IMAGE */}
-                        <div className="w-full md:w-[40%] flex justify-end">
-                          <motion.div
-                            initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
-                            animate={{ clipPath: "inset(0 0 0% 0)", opacity: 1 }}
-                            transition={{ duration: 1.8 }}
-                            className="w-full aspect-[4/3] overflow-hidden rounded-sm"
-                          >
-                            <img
-                              src={service.image}
-                              alt={service.title}
-                              className="w-full h-full object-cover transition-transform duration-[2000ms] hover:scale-110"
-                            />
-                          </motion.div>
-                        </div>
-
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
+                  {/* Right Column: Image */}
+                  <div
+                    className="w-full md:w-1/2 flex items-center justify-center transition-all duration-700 delay-200"
+                    style={{
+                      transform: activeIndex === index ? "translateY(0) scale(1)" : "translateY(30px) scale(0.95)",
+                      opacity: activeIndex === index ? 1 : 0,
+                    }}
+                  >
+                    <div className="w-full max-w-md lg:max-w-lg aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
+      </div>
+
+      {/* Progress Dots */}
+      <div className="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3">
+        {services.map((_, index) => (
+          <div
+            key={index}
+            className="w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300"
+            style={{
+              backgroundColor: activeIndex === index ? "white" : "rgba(255,255,255,0.3)",
+              transform: activeIndex === index ? "scale(1.3)" : "scale(1)",
+            }}
+          />
+        ))}
       </div>
     </section>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
