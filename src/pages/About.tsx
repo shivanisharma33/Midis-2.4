@@ -104,21 +104,21 @@ const AboutHero = () => {
 
 const GrowthSection = () => {
   return (
-    <section className="bg-white py-48 px-6 lg:px-24">
-      <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+    <section className="bg-white py-24 md:py-48 px-6 lg:px-24">
+      <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-start text-left">
 
         {/* Left Side: Content */}
-        <div className="lg:col-span-8 space-y-12">
+        <div className="lg:col-span-8 space-y-8 md:space-y-12">
           <span className="text-black font-black text-[11px] tracking-[0.2em] uppercase">Who We Are</span>
 
-          <h2 className="text-[7.5vw] md:text-[5.5vw] font-black uppercase text-[#0C0E12] leading-[0.9] tracking-tighter">
+          <h2 className="text-[10vw] md:text-[5.5vw] font-black uppercase text-[#0C0E12] leading-[0.9] tracking-tighter">
             DRIVING STARTUP <br />
             GROWTH—CRAFTING <br />
             <span className="text-orange">YOUR BRAND WITH <br />
               PRECISION & IMPACT</span>
           </h2>
 
-          <p className="text-gray-500 text-lg max-w-2xl leading-relaxed font-medium">
+          <p className="text-gray-500 text-base md:text-lg max-w-2xl leading-relaxed font-medium">
             We specialize in accelerating startup growth by building strong, memorable brands
             with a strategic blend of creativity and precision, delivering impactful solutions
             that resonate with your target audience and drive success.
@@ -132,8 +132,8 @@ const GrowthSection = () => {
 
         {/* Right Side: Stats */}
         <div className="lg:col-span-3 flex flex-col justify-start lg:pt-6">
-          <div className="flex items-start gap-4 mb-20">
-            <span className="text-[12rem] font-black text-[#0C0E12] leading-[0.8] tracking-tighter">15</span>
+          <div className="flex items-start gap-4 mb-12 md:mb-20">
+            <span className="text-[8rem] md:text-[12rem] font-black text-[#0C0E12] leading-[0.8] tracking-tighter">15</span>
             <div className="flex flex-col pt-2">
               <span className="[writing-mode:vertical-rl] text-[10px] font-black uppercase tracking-[0.4em] text-black">
                 Years of Work Experience
@@ -149,17 +149,17 @@ const GrowthSection = () => {
                 "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
                 "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop"
               ].map((url, i) => (
-                <div key={i} className="w-14 h-14 rounded-full border-2 border-white overflow-hidden shadow-lg">
+                <div key={i} className="w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-white overflow-hidden shadow-lg">
                   <img src={url} className="w-full h-full object-cover" alt="Client" />
                 </div>
               ))}
             </div>
 
             <div className="flex flex-col">
-              <span className="text-[10px] font-black uppercase tracking-widest text-[#0C0E12]/40 leading-tight">
+              <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#0C0E12]/40 leading-tight">
                 More Then 25K
               </span>
-              <span className="text-[10px] font-black uppercase tracking-widest text-[#0C0E12]/40 leading-tight">
+              <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#0C0E12]/40 leading-tight">
                 Clients Reviews
               </span>
             </div>
@@ -173,19 +173,19 @@ const GrowthSection = () => {
 
 const CreativeSection = () => {
   return (
-    <section className="bg-white pt-32 pb-0 px-6 lg:px-24">
-      <div className="max-w-[1500px] mx-auto flex flex-col md:flex-row items-center gap-24">
-        <div className="w-full md:w-[500px] aspect-[4/5] rounded-[40px] overflow-hidden shadow-6xl">
+    <section className="bg-white pt-20 md:pt-32 pb-0 px-6 lg:px-24">
+      <div className="max-w-[1500px] mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-24">
+        <div className="w-full md:w-[500px] aspect-[4/5] rounded-[32px] md:rounded-[40px] overflow-hidden shadow-6xl">
           <img src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/67e63d69162c2494e4bf9c3e_img%20(17)-p-500.webp" className="w-full h-full object-cover" />
         </div>
-        <div className="flex-1 space-y-12">
-          <h3 className="text-6xl md:text-8xl font-black uppercase text-[#0C0E12] leading-[0.9] tracking-tighter">
+        <div className="flex-1 space-y-8 md:space-y-12 text-left">
+          <h3 className="text-4xl md:text-8xl font-black uppercase text-[#0C0E12] leading-[0.9] tracking-tighter">
             CREATIVE STRATEGIES THAT GET YOU GROWING
           </h3>
-          <p className="text-gray-400 text-lg max-w-xl leading-relaxed">
+          <p className="text-gray-400 text-base md:text-lg max-w-xl leading-relaxed">
             We craft bespoke strategies tailored to your unique business needs, ensuring maximum impact and sustainable growth.
           </p>
-          <button className="px-12 py-6 bg-[#0C0E12] text-white rounded-full font-black uppercase tracking-[0.2em] text-[11px] hover:bg-orange-600 transition-all flex items-center gap-4">
+          <button className="px-10 md:px-12 py-5 md:py-6 bg-[#0C0E12] text-white rounded-full font-black uppercase tracking-[0.2em] text-[10px] md:text-[11px] hover:bg-orange-600 transition-all flex items-center gap-4">
             Start A Project <Plus size={18} />
           </button>
         </div>
@@ -226,60 +226,56 @@ const ReasonsSection = () => {
   ];
 
   return (
-    <section className="bg-white pt-20 pb-48">
-      <div className="px-6 lg:px-24 mb-20">
-        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-black block mb-6">Why You Choose Us</span>
-        <h2 className="text-6xl md:text-8xl font-black uppercase leading-[0.85] tracking-tighter max-w-4xl text-[#111317]">
+    <section className="bg-white pt-10 md:pt-20 pb-20 md:pb-48">
+      <div className="px-6 lg:px-24 mb-10 md:mb-20 text-left">
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-black block mb-4 md:mb-6">Why You Choose Us</span>
+        <h2 className="text-4xl md:text-8xl font-black uppercase leading-[0.9] tracking-tighter max-w-4xl text-[#111317]">
           HERE ARE SOME REASONS YOU'LL LOVE WORKING WITH US!
         </h2>
       </div>
 
-      <div className="flex w-full h-[600px] border-y border-black/10 bg-[#fbfaf8]">
+      <div className="flex flex-col md:flex-row w-full h-auto md:h-[600px] border-y border-black/10 bg-[#fbfaf8]">
         {reasons.map((r, i) => (
           <div
             key={i}
             onMouseEnter={() => setHoveredIndex(i)}
-            className={`relative flex transition-all duration-700 ease-[0.16,1,0.3,1] border-r border-black/10 last:border-r-0 cursor-pointer overflow-hidden ${hoveredIndex === i ? "flex-[2.5] bg-[#f5f3f0]" : "flex-1 hover:bg-[#efedea]"
-              }`}
+            onClick={() => setHoveredIndex(i)}
+            className={`relative flex flex-col md:flex-row transition-all duration-700 border-b md:border-b-0 md:border-r border-black/10 last:border-b-0 md:last:border-r-0 cursor-pointer overflow-hidden ${hoveredIndex === i ? "flex-[3] md:flex-[2.5] bg-[#f5f3f0]" : "flex-1 hover:bg-[#efedea]"
+              } min-h-[80px] md:min-h-0`}
           >
-            {/* Vertical Title Container */}
-            <div className={`flex flex-col justify-end p-8 w-full h-full transition-opacity duration-500 ${hoveredIndex === i ? "opacity-0 invisible" : "opacity-100 visible"}`}>
-              <h4 className="text-2xl font-black uppercase tracking-tighter [writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[#111317]">
+            {/* Vertical Title Container (Desktop) / Horizontal (Mobile) */}
+            <div className={`flex md:flex-col justify-between md:justify-end items-center md:items-start p-6 md:p-8 w-full transition-opacity duration-500 ${hoveredIndex === i ? "opacity-100 md:opacity-0" : "opacity-100"}`}>
+              <h4 className="text-lg md:text-2xl font-black uppercase tracking-tighter md:[writing-mode:vertical-rl] md:rotate-180 md:whitespace-nowrap text-[#111317]">
                 {r.title}
               </h4>
+              <Plus size={20} className={`md:hidden transition-transform duration-500 ${hoveredIndex === i ? "rotate-45" : ""}`} />
             </div>
 
             {/* Expanded Content */}
-            <AnimatePresence>
+            <AnimatePresence initial={false}>
               {hoveredIndex === i && (
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="absolute inset-0 flex flex-col p-12"
+                  initial={window?.innerWidth < 768 ? { height: 0, opacity: 0 } : { opacity: 0, x: 20 }}
+                  animate={window?.innerWidth < 768 ? { height: "auto", opacity: 1 } : { opacity: 1, x: 0 }}
+                  exit={window?.innerWidth < 768 ? { height: 0, opacity: 0 } : { opacity: 0, x: -20 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="md:absolute md:inset-0 flex flex-col p-6 md:p-12 overflow-hidden w-full"
                 >
-                  {/* Vertical Title (Side) */}
-                  <div className="absolute left-8 bottom-8">
+                  {/* Vertical Title (Desktop Side) */}
+                  <div className="absolute left-8 bottom-8 hidden md:block">
                     <h4 className="text-2xl font-black uppercase tracking-tighter [writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[#111317]">
                       {r.title}
                     </h4>
                   </div>
 
-                  <div className="ml-24 max-w-md">
-                    <div className="relative mb-8 pt-6">
-                      {/* Red Dot Decoration */}
-                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-red-600 rounded-full" />
-
-                      <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl">
-                        <img
-                          src={r.image}
-                          className="w-full h-full object-cover"
-                          alt={r.title}
-                        />
+                  <div className="md:ml-24 max-w-md w-full">
+                    <div className="relative mb-6 md:mb-8 md:pt-6">
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-red-600 rounded-full hidden md:block" />
+                      <div className="aspect-video w-full rounded-xl md:rounded-2xl overflow-hidden shadow-2xl">
+                        <img src={r.image} className="w-full h-full object-cover" alt={r.title} />
                       </div>
                     </div>
-                    <p className="text-[#111317]/60 text-sm font-medium leading-relaxed uppercase tracking-tight">
+                    <p className="text-[#111317]/60 text-xs md:text-sm font-medium leading-relaxed uppercase tracking-tight text-left">
                       {r.desc}
                     </p>
                   </div>
@@ -313,35 +309,35 @@ const AboutMarquee = () => {
 
 const StatsCollage = () => {
   return (
-    <section className="bg-white py-48 px-6 lg:px-24">
-      <div className="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 h-auto md:h-[1200px]">
+    <section className="bg-white py-24 md:py-48 px-6 lg:px-24">
+      <div className="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 h-auto md:h-[1200px]">
         {/* Box 1: Left Top Stat */}
-        <div className="md:col-span-4 bg-gray-50 rounded-[60px] p-16 flex flex-col justify-between">
-          <div className="aspect-square w-full rounded-[40px] overflow-hidden mb-12 shadow-3xl">
+        <div className="md:col-span-4 bg-gray-50 rounded-[32px] md:rounded-[60px] p-8 md:p-16 flex flex-col justify-between text-left">
+          <div className="aspect-square w-full rounded-[24px] md:rounded-[40px] overflow-hidden mb-8 md:mb-12 shadow-3xl">
             <img src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/67e63d69162c2494e4bf9c3e_img%20(17)-p-500.webp" className="w-full h-full object-cover" />
           </div>
           <div>
-            <h3 className="text-[8rem] font-black tracking-tighter leading-none italic">365<span className="not-italic text-orange-600">+</span></h3>
-            <p className="uppercase text-[10px] font-black tracking-[0.5em] text-gray-400 mt-4">Design Portfolio</p>
+            <h3 className="text-6xl md:text-[8rem] font-black tracking-tighter leading-none italic">365<span className="not-italic text-orange-600">+</span></h3>
+            <p className="uppercase text-[9px] md:text-[10px] font-black tracking-[0.5em] text-gray-400 mt-4">Design Portfolio</p>
           </div>
         </div>
 
         {/* Box 2: Right Main Image */}
-        <div className="md:col-span-8 bg-gray-50 rounded-[60px] overflow-hidden group shadow-2xl">
+        <div className="md:col-span-8 bg-gray-50 rounded-[32px] md:rounded-[60px] overflow-hidden group shadow-2xl min-h-[300px] md:min-h-0">
           <img src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/68079e60d8c8c72fd621dfd8_Video-p-1600.webp" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-all duration-2000" />
         </div>
 
         {/* Box 3: Left Bottom Image + Stat */}
-        <div className="md:col-span-5 bg-gray-50 rounded-[60px] overflow-hidden relative group">
+        <div className="md:col-span-5 bg-gray-50 rounded-[32px] md:rounded-[60px] overflow-hidden relative group min-h-[400px] md:min-h-0 text-left">
           <img src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/67e63d10d18f7f9092d93761_Img%20(5)-p-500.webp" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-16 flex flex-col justify-end">
-            <h3 className="text-white text-8xl font-black tracking-tighter italic">98%</h3>
-            <p className="text-white/40 uppercase text-[10px] font-black tracking-[0.4em] mt-4">Client Happiness</p>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-8 md:p-16 flex flex-col justify-end">
+            <h3 className="text-white text-6xl md:text-8xl font-black tracking-tighter italic">98%</h3>
+            <p className="text-white/40 uppercase text-[9px] md:text-[10px] font-black tracking-[0.4em] mt-4">Client Happiness</p>
           </div>
         </div>
 
         {/* Box 4: Tall Branding Showcase */}
-        <div className="md:col-span-7 bg-gray-50 rounded-[60px] overflow-hidden group shadow-3xl border border-black/5">
+        <div className="md:col-span-7 bg-gray-50 rounded-[32px] md:rounded-[60px] overflow-hidden group shadow-3xl border border-black/5 min-h-[400px] md:min-h-0">
           <img src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/67e63c7ba173bf929fe05bd6_Img%20(2)-p-500.webp" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1500" />
         </div>
       </div>
@@ -353,27 +349,27 @@ const AwardsSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-white py-48 px-6 lg:px-24">
-      <h2 className="text-[12vw] font-black uppercase text-[#0C0E12] tracking-tighter leading-none mb-32">AWARDS</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center border-t border-black/10">
+    <section className="bg-white py-24 md:py-48 px-6 lg:px-24">
+      <h2 className="text-[10vw] md:text-[12vw] font-black uppercase text-[#0C0E12] tracking-tighter leading-none mb-16 md:mb-32 text-left">AWARDS</h2>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center border-t border-black/10">
         <div className="divide-y divide-black/10 w-full">
           {awards.map((award, i) => (
             <div
               key={i}
               onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="group flex items-center justify-between py-12 transition-all duration-500 cursor-pointer overflow-visible relative"
+              className="group flex items-center justify-between py-8 md:py-12 transition-all duration-500 cursor-pointer overflow-visible relative"
             >
-              <div className="flex items-center gap-12 group-hover:translate-x-6 transition-transform">
+              <div className="flex items-center gap-6 md:gap-12 group-hover:translate-x-6 transition-transform">
                 <span className="text-[10px] font-black text-gray-400">({i + 1})</span>
-                <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#0C0E12]/40 group-hover:text-[#0C0E12] transition-colors">{award.title}</h3>
+                <h3 className="text-2xl md:text-6xl font-black uppercase tracking-tighter text-[#0C0E12]/40 group-hover:text-[#0C0E12] transition-colors">{award.title}</h3>
               </div>
-              <Plus className={`transition-all duration-500 ${hoveredIndex === i ? 'rotate-45 text-orange-600 scale-150' : 'text-gray-300'}`} size={32} />
+              <Plus className={`transition-all duration-500 ${hoveredIndex === i ? 'rotate-45 text-orange-600 scale-125 md:scale-150' : 'text-gray-300'}`} size={24} />
             </div>
           ))}
         </div>
 
-        <div className="relative aspect-square w-full rounded-[60px] overflow-hidden bg-[#f8f8f8] shadow-6xl">
+        <div className="relative aspect-square w-full rounded-[32px] md:rounded-[60px] overflow-hidden bg-[#f8f8f8] shadow-6xl">
           <AnimatePresence mode="wait">
             <motion.img
               key={hoveredIndex ?? 'default'}
@@ -393,21 +389,21 @@ const AwardsSection = () => {
 
 const DualCTA = () => {
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-2 h-[80vh] min-h-[700px]">
-      <motion.div whileHover="hover" className="relative group overflow-hidden">
+    <section className="grid grid-cols-1 lg:grid-cols-2 h-auto lg:h-[80vh] min-h-[500px] md:min-h-[700px]">
+      <motion.div whileHover="hover" className="relative group overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10 min-h-[400px]">
         <img src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/68079e60d8c8c72fd621dfd8_Video-p-1600.webp" className="absolute inset-0 w-full h-full object-cover grayscale transition-all duration-1000 group-hover:scale-110 group-hover:grayscale-0" />
         <div className="absolute inset-0 bg-black/60 group-hover:bg-black/30 transition-all" />
-        <div className="absolute inset-0 p-20 flex flex-col justify-between items-start text-white">
-          <h3 className="text-7xl font-black uppercase tracking-tighter leading-none max-w-md">HAVE A PROJECT IN MIND?</h3>
-          <button className="px-12 py-6 bg-white text-black rounded-full font-black uppercase text-[10px] tracking-widest hover:bg-orange-600 hover:text-white transition-all">LET'S TALK</button>
+        <div className="absolute inset-0 p-8 md:p-12 lg:p-20 flex flex-col justify-between items-start text-white text-left">
+          <h3 className="text-4xl md:text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-none max-w-md">HAVE A PROJECT IN MIND?</h3>
+          <button className="px-10 lg:px-12 py-5 lg:py-6 bg-white text-black rounded-full font-black uppercase text-[10px] tracking-widest hover:bg-orange-600 hover:text-white transition-all">LET'S TALK</button>
         </div>
       </motion.div>
-      <motion.div whileHover="hover" className="relative group overflow-hidden">
+      <motion.div whileHover="hover" className="relative group overflow-hidden min-h-[400px]">
         <img src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/67e63d10d18f7f9092d93761_Img%20(5)-p-500.webp" className="absolute inset-0 w-full h-full object-cover grayscale transition-all duration-1000 group-hover:scale-110 group-hover:grayscale-0" />
         <div className="absolute inset-0 bg-black/60 group-hover:bg-black/30 transition-all" />
-        <div className="absolute inset-0 p-20 flex flex-col justify-between items-start text-white text-left">
-          <h3 className="text-7xl font-black uppercase tracking-tighter leading-none max-w-md">LOOKING TO HIRE AN AGENCY?</h3>
-          <button className="px-12 py-6 bg-white text-black rounded-full font-black uppercase text-[10px] tracking-widest hover:bg-orange-600 hover:text-white transition-all">JOIN US</button>
+        <div className="absolute inset-0 p-8 md:p-12 lg:p-20 flex flex-col justify-between items-start text-white text-left">
+          <h3 className="text-4xl md:text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-none max-w-md">LOOKING TO HIRE AN AGENCY?</h3>
+          <button className="px-10 lg:px-12 py-5 lg:py-6 bg-white text-black rounded-full font-black uppercase text-[10px] tracking-widest hover:bg-orange-600 hover:text-white transition-all">JOIN US</button>
         </div>
       </motion.div>
     </section>
@@ -417,21 +413,21 @@ const DualCTA = () => {
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(0);
   return (
-    <section className="bg-white py-48 px-6 lg:px-24">
-      <div className="max-w-[1000px] mx-auto">
+    <section className="bg-white py-24 md:py-48 px-6 lg:px-24">
+      <div className="max-w-[1000px] mx-auto text-left">
         <div className="divide-y divide-black/10">
           {faqs.map((f, i) => (
-            <div key={i} className="py-10">
-              <button onClick={() => setOpenIndex(openIndex === i ? -1 : i)} className="w-full flex justify-between items-center group">
-                <h4 className={`text-2xl font-black uppercase tracking-tighter transition-all ${openIndex === i ? 'text-orange-600' : 'text-[#0C0E12]/80'}`}>{f.q}</h4>
-                <div className={`w-12 h-12 border border-black/10 rounded-full flex items-center justify-center transition-all ${openIndex === i ? 'rotate-180 bg-black text-white' : ''}`}>
-                  <ChevronDown size={24} />
+            <div key={i} className="py-6 md:py-10">
+              <button onClick={() => setOpenIndex(openIndex === i ? -1 : i)} className="w-full flex justify-between items-center group gap-4">
+                <h4 className={`text-lg md:text-2xl font-black uppercase tracking-tighter transition-all ${openIndex === i ? 'text-orange-600' : 'text-[#0C0E12]/80'}`}>{f.q}</h4>
+                <div className={`flex-shrink-0 w-10 h-10 md:w-12 md:h-12 border border-black/10 rounded-full flex items-center justify-center transition-all ${openIndex === i ? 'rotate-180 bg-black text-white' : ''}`}>
+                  <ChevronDown size={20} />
                 </div>
               </button>
               <AnimatePresence>
                 {openIndex === i && (
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                    <p className="pt-8 text-xl text-gray-400 font-medium max-w-3xl leading-relaxed">{f.a}</p>
+                    <p className="pt-6 md:pt-8 text-base md:text-xl text-gray-400 font-medium max-w-3xl leading-relaxed">{f.a}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -476,8 +472,8 @@ const AboutPage = () => {
       <DualCTA />
       <FAQSection />
 
-      <section className="bg-white py-48 text-center px-6">
-        <h2 className="text-[14vw] font-black uppercase tracking-tighter leading-[0.8] text-[#0C0E12]">
+      <section className="bg-white py-24 md:py-48 text-center px-6">
+        <h2 className="text-[14vw] md:text-[14vw] font-black uppercase tracking-tighter leading-[0.8] text-[#0C0E12]">
           LET'S WORK <br /> <span className="text-orange-600">TOGETHER</span>
         </h2>
       </section>

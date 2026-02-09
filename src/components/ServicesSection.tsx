@@ -91,7 +91,7 @@ export const ServicesSection = () => {
           return (
             <div
               key={service.number}
-              className={`service-item border-white/5 transition-all duration-700 ease-in-out border-t ${isActive ? "border-white/20" : "border-white/5"
+              className={`service-item border-white/5 transition-all duration-[1200ms] ease-in-out border-t ${isActive ? "border-white/20" : "border-white/5"
                 }`}
             >
               <div className="py-12 md:py-16">
@@ -103,14 +103,14 @@ export const ServicesSection = () => {
                     {/* Number positioned at the top left of the title as in reference image */}
                     <span className={`
                       absolute -top-1 -left-4 md:-top-3 md:-left-10
-                      text-[10px] md:text-[16px] font-bold tracking-tight transition-all duration-700
+                      text-[10px] md:text-[16px] font-bold tracking-tight transition-all duration-[1200ms]
                       ${isActive ? "text-white/40" : "text-white/5"}
                     `}>
                       {service.number}
                     </span>
                     <h3
                       className={`
-                        font-black tracking-tighter uppercase transition-colors duration-700 
+                        font-black tracking-tighter uppercase transition-colors duration-[1200ms] 
                         text-[clamp(2.5rem,12vw,10rem)] leading-[0.8] mb-0 select-none
                         ${isActive ? "text-[#909090]" : "text-[#151515]"}
                         group-hover:text-[#909090]
@@ -124,7 +124,7 @@ export const ServicesSection = () => {
                   <div
                     className={`
                       mb-6 w-10 h-10 md:w-20 md:h-20 rounded-full border border-white/10 
-                      flex items-center justify-center transition-all duration-700 ease-out
+                      flex items-center justify-center transition-all duration-[1200ms] ease-out
                       ${isActive ? "opacity-100 scale-100 rotate-0 bg-white text-black" : "opacity-0 scale-75"}
                     `}
                   >
@@ -146,7 +146,7 @@ export const ServicesSection = () => {
                       exit={{ height: 0, opacity: 0 }}
                       onAnimationComplete={() => ScrollTrigger.refresh()}
                       transition={{
-                        duration: 0.8,
+                        duration: 1.5,
                         ease: [0.16, 1, 0.3, 1]
                       }}
                       className="overflow-hidden"
@@ -158,6 +158,7 @@ export const ServicesSection = () => {
                           <motion.p
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 1.2, delay: 0.2 }}
                             className="text-sm md:text-base text-white/50 leading-relaxed max-w-md mb-10"
                           >
                             {service.description}
@@ -166,7 +167,7 @@ export const ServicesSection = () => {
                           <motion.div
                             initial={{ y: 15, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.1 }}
+                            transition={{ duration: 1.2, delay: 0.3 }}
                             className="flex flex-wrap gap-3"
                           >
                             {service.tags.map((tag) => (
@@ -185,7 +186,7 @@ export const ServicesSection = () => {
                           <motion.div
                             initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
                             animate={{ clipPath: "inset(0 0 0% 0)", opacity: 1 }}
-                            transition={{ duration: 1 }}
+                            transition={{ duration: 2 }}
                             className="w-full aspect-[4/3] md:aspect-[1.5/1] overflow-hidden rounded-sm"
                           >
                             <img
