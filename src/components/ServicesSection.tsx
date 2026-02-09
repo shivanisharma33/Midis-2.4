@@ -50,34 +50,32 @@ const services = [
 
 export const ServicesSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      const items = gsap.utils.toArray<HTMLElement>(".service-item");
-      items.forEach((item, index) => {
-        ScrollTrigger.create({
-          trigger: item,
-          start: isMobile ? "top 70%" : "top 60%", // Earlier trigger on mobile
-          end: isMobile ? "bottom 40%" : "bottom 40%",
-          onEnter: () => setActiveIndex(index),
-          onEnterBack: () => setActiveIndex(index),
-        });
+      // Pin the entire section to make scrolling through services "slow" and "one by one"
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        // Increased scroll distance to 150% per item for an even slower feel
+        end: `+=${services.length * 150}%`,
+        pin: true,
+        scrub: 1,
+        onUpdate: (self) => {
+          const index = Math.min(
+            services.length - 1,
+            Math.floor(self.progress * services.length)
+          );
+          setActiveIndex(index);
+        },
       });
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [isMobile]);
+  }, []);
 
   return (
     <section
