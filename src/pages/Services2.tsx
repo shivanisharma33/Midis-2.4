@@ -790,13 +790,4 @@ export default function Services2() {
       <CustomFooter />
     </main>
   );
-
 }
-
-
-
-
-
-
-
-

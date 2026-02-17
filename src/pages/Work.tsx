@@ -5,12 +5,17 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
-const projects = [
-    { title: "Reisfel", image: "https://cdn.prod.website-files.com/68bf26087df8b22fd8bdbf00/690ce952d8b03c10d6625c29_pexels-190703726-11376936-p-1600.jpg" },
-    { title: "Delvyes", image: "https://cdn.prod.website-files.com/68bf26087df8b22fd8bdbf00/69137d2ded862c6646c1b092_pexels-marcin-tomczak-33520822-7334421-p-1600.jpg" },
-    { title: "Clairvy", image: "https://cdn.prod.website-files.com/68bf26087df8b22fd8bdbf00/69137b6deeda88efb684c412_pexels-polina-tankilevitch-5581657-p-1600.jpg" },
-    { title: "Racely", image: "https://cdn.prod.website-files.com/68bf26087df8b22fd8bdbf00/69137d59901483081f697eb2_pexels-beyzaa-yurtkuran-279977530-12990251-p-1600.jpg" },
-];
+// dynamically build a list of projects based on the images stored in public
+// folder "New folder (8)". We encode the folder name to handle spaces and
+// parentheses; the files are numbered sequentially starting at 1. Adjust
+// IMAGE_COUNT if more images are added later.
+const FOLDER_NAME = "New folder (8)";
+const IMAGE_COUNT = 47; // update if images are added/removed
+const encodedFolder = encodeURI(FOLDER_NAME);
+const projects = Array.from({ length: IMAGE_COUNT }, (_, idx) => ({
+    title: `Project ${idx + 1}`,
+    image: `/${encodedFolder}/${idx + 1}.jpg`,
+}));
 
 const ProjectCard = ({ project, index }: { project: typeof projects[0], index: number }) => {
     const cardRef = useRef(null);
@@ -42,11 +47,6 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
                     />
                 </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/40" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif italic text-white">
-                        {project.title}
-                    </h2>
-                </div>
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-white/30" />
             </div>
         </motion.div>
@@ -73,6 +73,27 @@ const WorkPage = () => {
                     >
                         Featured Works
                     </motion.h1>
+                    {/* scroll hint */}
+                    <motion.div
+                        className="mt-6"
+                        animate={{ y: [0, 8, 0] }}
+                        transition={{ repeat: Infinity, duration: 1.4 }}
+                    >
+                        <svg
+                            className="w-6 h-6 text-white mx-auto"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 9l-7 7-7-7"
+                            />
+                        </svg>
+                    </motion.div>
                 </div>
             </section>
 

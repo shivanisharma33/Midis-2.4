@@ -141,11 +141,4 @@ export const CTASection = () => {
       </div>
     </section>
   );
-
 };
-   
-
-
-
-
-

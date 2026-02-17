@@ -504,12 +504,3 @@ export default function Contact() {
     </main>
   );
 }
-
-
-
-
-
-
-
-
-
