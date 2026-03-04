@@ -297,47 +297,47 @@ export default function CrearistCollage() {
         className="relative md:absolute inset-0 flex z-40 md:pointer-events-none"
       >
         <div className="hidden md:block w-1/2 h-full" />
-        <div className="w-full md:w-1/2 h-full bg-white flex flex-col items-center justify-center pointer-events-auto shadow-[-20px_0_50px_rgba(0,0,0,0.05)] py-16 md:py-0">
-          <div className="w-full max-w-2xl px-8 md:px-12 lg:px-16">
-            <h2 className="milestone-reveal text-[clamp(1.4rem,5.5vw,4rem)] md:text-[clamp(2rem,4.5vw,4rem)] font-bold text-black leading-[1.1] mb-12 tracking-tight uppercase">
+        <div className="w-full md:w-1/2 min-h-screen md:h-full bg-white flex flex-col items-center justify-center pointer-events-auto shadow-[-20px_0_50px_rgba(0,0,0,0.05)] py-12 md:py-8">
+          <div className="w-full max-w-2xl px-6 md:px-12 lg:px-16">
+            <h2 className="milestone-reveal text-[clamp(1.8rem,5vw,3.5rem)] md:text-[clamp(2rem,4vw,3.2rem)] font-bold text-black leading-[1.1] mb-8 md:mb-10 tracking-tight uppercase">
               RESULTS THAT<br />
               POWER REAL<br />
               BUSINESS GROWTH
             </h2>
 
-            <div className="grid grid-cols-2 relative border-t border-black/5">
-              <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-black/5"></div>
-              <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-black/5"></div>
+            <div className="grid grid-cols-2 relative border-t border-black/10">
+              <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-black/10"></div>
+              <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-black/10"></div>
 
-              <div className="pt-8 pb-10 px-4 md:px-6">
-                <span className="milestone-reveal block text-[10px] uppercase tracking-wider text-gray-400 mb-4 font-bold leading-tight">
+              <div className="pt-6 pb-8 md:pt-8 md:pb-10 px-4 md:px-6">
+                <span className="milestone-reveal block text-[10px] md:text-[11px] uppercase tracking-wider text-gray-500 mb-3 md:mb-4 font-bold leading-tight">
                   CLIENT ROI<br />INCREASE
                 </span>
                 <div className="flex items-center gap-3 relative">
                   <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-red-500 milestone-reveal"></span>
-                  <span className="milestone-reveal block text-[clamp(2rem,4.5vw,4.5rem)] font-bold text-[#141414] leading-[1.2]">3.4X</span>
+                  <span className="milestone-reveal block text-[clamp(1.8rem,4vw,3.5rem)] font-bold text-[#141414] leading-none">3.4X</span>
                 </div>
               </div>
 
-              <div className="pt-8 pb-10 px-6 md:px-8">
-                <span className="milestone-reveal block text-[10px] uppercase tracking-wider text-gray-400 mb-4 font-bold leading-tight">
+              <div className="pt-6 pb-8 md:pt-8 md:pb-10 px-4 md:px-6">
+                <span className="milestone-reveal block text-[10px] md:text-[11px] uppercase tracking-wider text-gray-500 mb-3 md:mb-4 font-bold leading-tight">
                   ORGANIC TRAFFIC<br />GROWTH
                 </span>
-                <span className="milestone-reveal block text-[clamp(2rem,4.5vw,4.5rem)] font-bold text-[#141414] leading-[1.2]">120%</span>
+                <span className="milestone-reveal block text-[clamp(1.8rem,4vw,3.5rem)] font-bold text-[#141414] leading-none">120%</span>
               </div>
 
-              <div className="pt-10 pb-4 px-4 md:px-6">
-                <span className="milestone-reveal block text-[10px] uppercase tracking-wider text-gray-400 mb-4 font-bold leading-tight">
+              <div className="pt-8 pb-6 md:pt-10 md:pb-8 px-4 md:px-6">
+                <span className="milestone-reveal block text-[10px] md:text-[11px] uppercase tracking-wider text-gray-500 mb-3 md:mb-4 font-bold leading-tight">
                   SUPPORT COST<br />SAVINGS
                 </span>
-                <span className="milestone-reveal block text-[clamp(2rem,4.5vw,4.5rem)] font-bold text-[#141414] leading-[1.2]">40%</span>
+                <span className="milestone-reveal block text-[clamp(1.8rem,4vw,3.5rem)] font-bold text-[#141414] leading-none">40%</span>
               </div>
 
-              <div className="pt-10 pb-4 px-6 md:px-8">
-                <span className="milestone-reveal block text-[10px] uppercase tracking-wider text-gray-400 mb-4 font-bold leading-tight">
+              <div className="pt-8 pb-6 md:pt-10 md:pb-8 px-4 md:px-6">
+                <span className="milestone-reveal block text-[10px] md:text-[11px] uppercase tracking-wider text-gray-400 mb-3 md:mb-4 font-bold leading-tight">
                   CSAT SCORE<br />IMPROVEMENT
                 </span>
-                <span className="milestone-reveal block text-[clamp(2rem,4.5vw,4.5rem)] font-bold text-[#141414] leading-[1.2]">+25%</span>
+                <span className="milestone-reveal block text-[clamp(1.8rem,4vw,3.5rem)] font-bold text-[#141414] leading-none">+25%</span>
               </div>
             </div>
           </div>
@@ -355,47 +355,47 @@ export default function CrearistCollage() {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="w-full md:w-1/2 h-full bg-white flex flex-col items-center justify-center pointer-events-auto shadow-[-20px_0_50px_rgba(0,0,0,0.05)] py-16 md:py-0">
-          <div className="w-full max-w-2xl px-8 md:px-12 lg:px-16">
-            <h2 className="text-[clamp(1.4rem,5.5vw,4rem)] md:text-[clamp(2rem,4.5vw,4rem)] font-bold text-black leading-[1.1] mb-12 tracking-tight uppercase">
+        <div className="w-full md:w-1/2 min-h-screen md:h-full bg-white flex flex-col items-center justify-center pointer-events-auto shadow-[-20px_0_50px_rgba(0,0,0,0.05)] py-12 md:py-8">
+          <div className="w-full max-w-2xl px-6 md:px-12 lg:px-16">
+            <h2 className="text-[clamp(1.8rem,5vw,3.5rem)] md:text-[clamp(2rem,4vw,3.2rem)] font-bold text-black leading-[1.1] mb-8 md:mb-10 tracking-tight uppercase">
               WHY TOP BRANDS<br />
               TRUST OUR<br />
               EXPERTISE
             </h2>
 
-            <div className="grid grid-cols-2 relative border-t border-black/5">
-              <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-black/5"></div>
-              <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-black/5"></div>
+            <div className="grid grid-cols-2 relative border-t border-black/10">
+              <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-black/10"></div>
+              <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-black/10"></div>
 
-              <div className="pt-8 pb-10 px-4 md:px-6">
-                <span className="block text-[10px] uppercase tracking-wider text-gray-400 mb-4 font-bold leading-tight">
+              <div className="pt-6 pb-8 md:pt-8 md:pb-10 px-4 md:px-6">
+                <span className="block text-[10px] md:text-[11px] uppercase tracking-wider text-gray-500 mb-3 md:mb-4 font-bold leading-tight">
                   GLOBAL BRANDING<br />SOLUTIONS
                 </span>
                 <div className="flex items-center gap-3 relative">
                   <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                  <span className="block text-[clamp(2rem,4.5vw,4.5rem)] font-bold text-[#141414] leading-[1.2]">360°</span>
+                  <span className="block text-[clamp(1.8rem,4vw,3.5rem)] font-bold text-[#141414] leading-none">360°</span>
                 </div>
               </div>
 
-              <div className="pt-8 pb-10 px-6 md:px-8">
-                <span className="block text-[10px] uppercase tracking-wider text-gray-400 mb-4 font-bold leading-tight">
+              <div className="pt-6 pb-8 md:pt-8 md:pb-10 px-4 md:px-6">
+                <span className="block text-[10px] md:text-[11px] uppercase tracking-wider text-gray-500 mb-3 md:mb-4 font-bold leading-tight">
                   DEDICATED TEAM<br />EXPERTS
                 </span>
-                <span className="block text-[clamp(2rem,4.5vw,4.5rem)] font-bold text-[#141414] leading-[1.2]">15+</span>
+                <span className="block text-[clamp(1.8rem,4vw,3.5rem)] font-bold text-[#141414] leading-none">15+</span>
               </div>
 
-              <div className="pt-10 pb-4 px-4 md:px-6">
-                <span className="block text-[10px] uppercase tracking-wider text-gray-400 mb-4 font-bold leading-tight">
+              <div className="pt-8 pb-6 md:pt-10 md:pb-8 px-4 md:px-6">
+                <span className="block text-[10px] md:text-[11px] uppercase tracking-wider text-gray-500 mb-3 md:mb-4 font-bold leading-tight">
                   TRANSPARENT<br />COMMUNICATION
                 </span>
-                <span className="block text-[clamp(2rem,4.5vw,4.5rem)] font-bold text-[#141414] leading-[1.2]">100%</span>
+                <span className="block text-[clamp(1.8rem,4vw,3.5rem)] font-bold text-[#141414] leading-none">100%</span>
               </div>
 
-              <div className="pt-10 pb-4 px-6 md:px-8">
-                <span className="block text-[10px] uppercase tracking-wider text-gray-400 mb-4 font-bold leading-tight">
+              <div className="pt-8 pb-6 md:pt-10 md:pb-8 px-4 md:px-6">
+                <span className="block text-[10px] md:text-[11px] uppercase tracking-wider text-gray-500 mb-3 md:mb-4 font-bold leading-tight">
                   LONG-TERM<br />PARTNERSHIPS
                 </span>
-                <span className="block text-[clamp(2rem,4.5vw,4.5rem)] font-bold text-[#141414] leading-[1.2]">YES</span>
+                <span className="block text-[clamp(1.8rem,4vw,3.5rem)] font-bold text-[#141414] leading-none">YES</span>
               </div>
             </div>
           </div>
