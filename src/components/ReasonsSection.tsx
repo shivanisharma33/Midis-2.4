@@ -119,7 +119,8 @@ export const ReasonsSection: React.FC = () => {
         <div className="max-w-7xl w-full px-4 sm:px-6 md:px-16 lg:px-24">
           <h2
             className="uppercase font-extrabold leading-[1.05] text-black
-            text-[2.4rem] sm:text-[3.2rem] md:text-[4.2rem] lg:text-[6.2rem]"
+            text-[30px] sm:text-[3.2rem] md:text-[4.2rem] lg:text-[6.2rem]
+            tracking-[-1.6px] lg:tracking-tighter"
           >
             <span className="reason-line block">HERE ARE A FEW</span>
             <span className="reason-line block">REASONS WHY</span>

@@ -68,8 +68,8 @@ export const ServicesSection = () => {
       items.forEach((item, index) => {
         ScrollTrigger.create({
           trigger: item,
-          start: isMobile ? "top 70%" : "top 60%", // Earlier trigger on mobile
-          end: isMobile ? "bottom 40%" : "bottom 40%",
+          start: isMobile ? "top 60%" : "top 45%",
+          end: isMobile ? "bottom 40%" : "bottom 55%",
           onEnter: () => setActiveIndex(index),
           onEnterBack: () => setActiveIndex(index),
         });
@@ -82,7 +82,7 @@ export const ServicesSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0B0B0B] py-24 md:py-32 antialiased text-white"
+      className="bg-[#0B0B0B] py-32 md:py-64 antialiased text-white"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
         {services.map((service, index) => {
@@ -91,10 +91,10 @@ export const ServicesSection = () => {
           return (
             <div
               key={service.number}
-              className={`service-item border-white/5 transition-all duration-700 ease-in-out border-t ${isActive ? "border-white/20" : "border-white/5"
+              className={`service-item border-white/5 transition-all duration-1000 ease-in-out border-t ${isActive ? "border-white/20" : "border-white/5"
                 }`}
             >
-              <div className="py-12 md:py-16">
+              <div className="py-32 md:py-64">
 
                 {/* 1. TITLE & NUMBER HEADER */}
                 <div className="relative w-full flex justify-between items-end group cursor-pointer pb-2">
@@ -146,7 +146,7 @@ export const ServicesSection = () => {
                       exit={{ height: 0, opacity: 0 }}
                       onAnimationComplete={() => ScrollTrigger.refresh()}
                       transition={{
-                        duration: 0.8,
+                        duration: 1.2,
                         ease: [0.16, 1, 0.3, 1]
                       }}
                       className="overflow-hidden"

@@ -202,7 +202,7 @@ export default function CrearistCollage() {
         <span className="text-[10px] md:text-[10px] font-bold tracking-[0.25em] text-black/30 mb-6 uppercase">
           TOP RATED GLOBAL DIGITAL AGENCY
         </span>
-        <h2 className="text-[clamp(1.4rem,5.5vw,4rem)] md:text-[clamp(2.5rem,7vw,6rem)] font-bold text-black leading-[1.1] uppercase tracking-tight mb-10">
+        <h2 className="text-[30px] md:text-[clamp(2.5rem,7vw,6rem)] font-bold text-black leading-[1.1] uppercase tracking-[-1.6px] lg:tracking-tight mb-10">
           BUILDING BRANDS,<br />
           DRIVING GROWTH,<br />
           GROWING BEYOND LIMITS
@@ -299,7 +299,7 @@ export default function CrearistCollage() {
         <div className="hidden md:block w-1/2 h-full" />
         <div className="w-full md:w-1/2 min-h-screen md:h-full bg-white flex flex-col items-center justify-center pointer-events-auto shadow-[-20px_0_50px_rgba(0,0,0,0.05)] py-12 md:py-8">
           <div className="w-full max-w-2xl px-6 md:px-12 lg:px-16">
-            <h2 className="milestone-reveal text-[clamp(1.8rem,5vw,3.5rem)] md:text-[clamp(2rem,4vw,3.2rem)] font-bold text-black leading-[1.1] mb-8 md:mb-10 tracking-tight uppercase">
+            <h2 className="milestone-reveal text-[30px] md:text-[clamp(2rem,4vw,3.2rem)] font-bold text-black leading-[1.1] mb-8 md:mb-10 tracking-[-1.6px] lg:tracking-tight uppercase">
               RESULTS THAT<br />
               POWER REAL<br />
               BUSINESS GROWTH
@@ -357,7 +357,7 @@ export default function CrearistCollage() {
         </div>
         <div className="w-full md:w-1/2 min-h-screen md:h-full bg-white flex flex-col items-center justify-center pointer-events-auto shadow-[-20px_0_50px_rgba(0,0,0,0.05)] py-12 md:py-8">
           <div className="w-full max-w-2xl px-6 md:px-12 lg:px-16">
-            <h2 className="text-[clamp(1.8rem,5vw,3.5rem)] md:text-[clamp(2rem,4vw,3.2rem)] font-bold text-black leading-[1.1] mb-8 md:mb-10 tracking-tight uppercase">
+            <h2 className="text-[30px] md:text-[clamp(2rem,4vw,3.2rem)] font-bold text-black leading-[1.1] mb-8 md:mb-10 tracking-[-1.6px] lg:tracking-tight uppercase">
               WHY TOP BRANDS<br />
               TRUST OUR<br />
               EXPERTISE

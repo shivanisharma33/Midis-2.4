@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { ArrowUpRight, Plus, ChevronDown, Star, Zap, Target, Users, ArrowDown } from "lucide-react";
+import { ArrowUpRight, Plus, ChevronDown } from "lucide-react";
 import { ScrollingVideoZoom } from "@/components/ScrollingVideoZoom";
 
 /* ================= TYPES & DATA ================= */
@@ -29,6 +29,15 @@ const partners = ["FORBES", "TECHCRUNCH", "WIRED", "NYT", "Awwwards", "Dribbble"
 /* ================= COMPONENTS ================= */
 
 const AboutHero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <section className="relative min-h-screen bg-[#0C0E12] flex flex-col items-center justify-start pt-40 overflow-hidden text-center px-6">
       <motion.h1
@@ -57,9 +66,10 @@ const AboutHero = () => {
 
           {/* Left: Gold Bar */}
           <motion.div
-            initial={{ x: -100, opacity: 0, rotate: -15 }}
-            whileInView={{ x: 0, opacity: 1, rotate: -8 }}
+            initial={isMobile ? { x: 0, opacity: 1, rotate: -8 } : { x: -100, opacity: 0, rotate: -15 }}
+            whileInView={isMobile ? { x: 0, opacity: 1, rotate: -8 } : { x: 0, opacity: 1, rotate: -8 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
             className="w-1/3 aspect-[4/5] rounded-[30px] lg:rounded-[50px] overflow-hidden shadow-2xl z-0 transform-gpu origin-right border-4 border-[#0C0E12]"
           >
             <img
@@ -71,9 +81,10 @@ const AboutHero = () => {
 
           {/* Center: Mask */}
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
+            initial={isMobile ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+            whileInView={isMobile ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
             className="w-2/5 aspect-[4/5] rounded-[40px] lg:rounded-[60px] overflow-hidden z-20 shadow-[0_50px_100px_rgba(0,0,0,0.8)] border-4 border-[#0C0E12]"
           >
             <img
@@ -85,9 +96,10 @@ const AboutHero = () => {
 
           {/* Right: Green Swirl */}
           <motion.div
-            initial={{ x: 100, opacity: 0, rotate: 15 }}
-            whileInView={{ x: 0, opacity: 1, rotate: 8 }}
+            initial={isMobile ? { x: 0, opacity: 1, rotate: 8 } : { x: 100, opacity: 0, rotate: 15 }}
+            whileInView={isMobile ? { x: 0, opacity: 1, rotate: 8 } : { x: 0, opacity: 1, rotate: 8 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
             className="w-1/3 aspect-[4/5] rounded-[30px] lg:rounded-[50px] overflow-hidden shadow-2xl z-0 transform-gpu origin-left border-4 border-[#0C0E12]"
           >
             <img
@@ -111,14 +123,14 @@ const GrowthSection = () => {
         <div className="lg:col-span-8 space-y-12">
           <span className="text-black font-black text-[11px] tracking-[0.2em] uppercase">Who We Are</span>
 
-          <h2 className="text-[7.5vw] md:text-[5.5vw] font-black uppercase text-[#0C0E12] leading-[0.9] tracking-tighter">
+          <h2 className="text-[30px] md:text-[5.5vw] font-black uppercase text-[#0C0E12] leading-[0.9] tracking-[-1.6px] lg:tracking-tighter">
             DRIVING STARTUP <br />
             GROWTH—CRAFTING <br />
             <span className="text-orange">YOUR BRAND WITH <br />
               PRECISION & IMPACT</span>
           </h2>
 
-          <p className="text-gray-500 text-lg max-w-2xl leading-relaxed font-medium">
+          <p className="text-gray-500 text-xl md:text-lg max-w-2xl leading-relaxed font-medium">
             We specialize in accelerating startup growth by building strong, memorable brands
             with a strategic blend of creativity and precision, delivering impactful solutions
             that resonate with your target audience and drive success.
@@ -179,10 +191,10 @@ const CreativeSection = () => {
           <img src="https://cdn.prod.website-files.com/67a1ba0a889270647730e779/67e63d69162c2494e4bf9c3e_img%20(17)-p-500.webp" className="w-full h-full object-cover" />
         </div>
         <div className="flex-1 space-y-12">
-          <h3 className="text-6xl md:text-8xl font-black uppercase text-[#0C0E12] leading-[0.9] tracking-tighter">
+          <h3 className="text-[30px] md:text-7xl lg:text-8xl font-black uppercase text-[#0C0E12] leading-[0.9] tracking-[-1.6px] lg:tracking-tighter">
             CREATIVE STRATEGIES THAT GET YOU GROWING
           </h3>
-          <p className="text-gray-400 text-lg max-w-xl leading-relaxed">
+          <p className="text-gray-400 text-xl md:text-lg max-w-xl leading-relaxed">
             We craft bespoke strategies tailored to your unique business needs, ensuring maximum impact and sustainable growth.
           </p>
           <button className="px-12 py-6 bg-[#0C0E12] text-white rounded-full font-black uppercase tracking-[0.2em] text-[11px] hover:bg-orange-600 transition-all flex items-center gap-4">
@@ -229,7 +241,7 @@ const ReasonsSection = () => {
     <section className="bg-white pt-20 pb-48">
       <div className="px-6 lg:px-24 mb-20">
         <span className="text-[10px] font-black uppercase tracking-[0.2em] text-black block mb-6">Why You Choose Us</span>
-        <h2 className="text-6xl md:text-8xl font-black uppercase leading-[0.85] tracking-tighter max-w-4xl text-[#111317]">
+        <h2 className="text-[30px] md:text-7xl lg:text-8xl font-black uppercase leading-[0.85] tracking-[-1.6px] lg:tracking-tighter max-w-4xl text-[#111317]">
           HERE ARE SOME REASONS YOU'LL LOVE WORKING WITH US!
         </h2>
       </div>
@@ -279,7 +291,7 @@ const ReasonsSection = () => {
                         />
                       </div>
                     </div>
-                    <p className="text-[#111317]/60 text-sm font-medium leading-relaxed uppercase tracking-tight">
+                    <p className="text-[#111317]/60 text-base md:text-sm font-medium leading-relaxed uppercase tracking-tight">
                       {r.desc}
                     </p>
                   </div>
@@ -354,7 +366,7 @@ const AwardsSection = () => {
 
   return (
     <section className="bg-white py-48 px-6 lg:px-24">
-      <h2 className="text-[12vw] font-black uppercase text-[#0C0E12] tracking-tighter leading-none mb-32">AWARDS</h2>
+      <h2 className="text-[15vw] md:text-[12vw] font-black uppercase text-[#0C0E12] tracking-tighter leading-none mb-32">AWARDS</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center border-t border-black/10">
         <div className="divide-y divide-black/10 w-full">
           {awards.map((award, i) => (

@@ -83,14 +83,14 @@ export const CTASection = () => {
 
         {/* LINE 1 */}
         <div className="flex justify-center mb-6">
-          <span className="cta-text text-[clamp(2.5rem,6vw,5rem)] font-extrabold overflow-hidden">
+          <span className="cta-text text-[clamp(30px,6vw,5rem)] font-extrabold overflow-hidden tracking-[-1.6px] lg:tracking-tighter">
             <span className="inline-block">PARTNER WITH</span>
           </span>
         </div>
 
         {/* LINE 2 */}
         <div className="flex justify-center items-center gap-6 mb-6">
-          <span className="cta-text text-[clamp(2.5rem,6vw,5rem)] font-extrabold overflow-hidden">
+          <span className="cta-text text-[clamp(30px,6vw,5rem)] font-extrabold overflow-hidden tracking-[-1.6px] lg:tracking-tighter">
             <span className="inline-block">EXPERIENCED</span>
           </span>
 
@@ -118,14 +118,14 @@ export const CTASection = () => {
             />
           </span>
 
-          <span className="cta-text text-[clamp(2.5rem,6vw,5rem)] font-extrabold overflow-hidden">
+          <span className="cta-text text-[clamp(30px,6vw,5rem)] font-extrabold overflow-hidden tracking-[-1.6px] lg:tracking-tighter">
             <span className="inline-block">DESIGNER</span>
           </span>
         </div>
 
         {/* LINE 3 */}
         <div className="flex justify-center mb-14">
-          <span className="cta-text text-[clamp(2.5rem,6vw,5rem)] font-extrabold overflow-hidden">
+          <span className="cta-text text-[clamp(30px,6vw,5rem)] font-extrabold overflow-hidden tracking-[-1.6px] lg:tracking-tighter">
             <span className="inline-block">PARTNER WITH</span>
           </span>
         </div>

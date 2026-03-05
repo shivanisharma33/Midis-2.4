@@ -131,7 +131,8 @@ export const TeamSection: React.FC = () => {
           ref={headingRef}
           className="
             font-anton text-white text-center leading-[0.9]
-            text-[3rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem]
+            text-[30px] sm:text-[5rem] md:text-[7rem] lg:text-[9rem]
+            tracking-[-1.6px] lg:tracking-tighter
           "
         >
           <span className="line block">MEET OUR</span>

@@ -21,6 +21,18 @@ const FuelingYourGrowthWithFreshIdeas: React.FC = () => {
 
     if (imgs.length === 0) return;
 
+    if (isMobile) {
+      // Make images static on mobile - effectively stacking them or just showing them naturally
+      gsap.set(imgs, {
+        position: "relative",
+        height: "50vh",
+        autoAlpha: 1,
+        y: 0,
+        marginBottom: "1px"
+      });
+      return;
+    }
+
     imgs.forEach((img, i) => {
       gsap.set(img, {
         position: "absolute",
@@ -29,7 +41,7 @@ const FuelingYourGrowthWithFreshIdeas: React.FC = () => {
         width: "100%",
         height: "100%",
         objectFit: "cover",
-        y: i === 0 ? 0 : isMobile ? 90 : 150,
+        y: i === 0 ? 0 : 150,
         autoAlpha: i === 0 ? 1 : 0,
       });
     });
@@ -43,7 +55,7 @@ const FuelingYourGrowthWithFreshIdeas: React.FC = () => {
           {
             y: 0,
             autoAlpha: 1,
-            duration: isMobile ? 0.8 : 1.2,
+            duration: 1.2,
             ease: "power2.out",
           },
           "+=0.15"
@@ -53,7 +65,7 @@ const FuelingYourGrowthWithFreshIdeas: React.FC = () => {
           imgs[i - 1],
           {
             autoAlpha: 0,
-            duration: isMobile ? 0.7 : 1.0,
+            duration: 1.0,
             ease: "power2.out",
           },
           "<"
@@ -65,13 +77,8 @@ const FuelingYourGrowthWithFreshIdeas: React.FC = () => {
       animation: tl,
       trigger: container,
       start: "top top",
-
-      // 🚀 MUCH SHORTER SCROLL ON MOBILE
-      end: isMobile
-        ? `+=${imgs.length * window.innerHeight * 0.55}`
-        : `+=${imgs.length * window.innerHeight}`,
-
-      scrub: isMobile ? 0.35 : 1,
+      end: `+=${imgs.length * window.innerHeight}`,
+      scrub: 1,
       pin: true,
       anticipatePin: 1,
     });
@@ -108,13 +115,13 @@ const FuelingYourGrowthWithFreshIdeas: React.FC = () => {
               py-12 md:py-0
             "
           >
-            <h1 className="font-extrabold text-black leading-[1.1] mb-6 text-[36px] sm:text-[45px] md:text-[55px]">
+            <h1 className="font-extrabold text-black leading-[1.1] mb-6 text-[42px] sm:text-[45px] md:text-[55px]">
               EMPOWERING <br />
               DIGITAL GROWTH <br />
               FOR STARTUPS
             </h1>
 
-            <p className="text-[15px] sm:text-[17px] text-gray-600 leading-7 max-w-[480px] mb-8">
+            <p className="text-[18px] sm:text-[17px] text-gray-600 leading-7 max-w-[480px] mb-8">
               We blend performance with creativity to offer powerful digital marketing strategies—SEO,
               branding, and social media solutions that get results for global brands.
             </p>

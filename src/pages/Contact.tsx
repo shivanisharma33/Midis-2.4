@@ -314,8 +314,8 @@ export default function Contact() {
                         {/* Name */}
                         <div className="relative">
                           <label className={`absolute left-0 transition-all duration-300 pointer-events-none ${focusedField === 'name' || formData.name
-                              ? 'text-[10px] font-bold text-orange-600 -top-2 uppercase tracking-[0.2em]'
-                              : 'text-gray-400 top-4'
+                            ? 'text-[10px] font-bold text-orange-600 -top-2 uppercase tracking-[0.2em]'
+                            : 'text-gray-400 top-4'
                             }`}>
                             Your Name *
                           </label>
@@ -334,8 +334,8 @@ export default function Contact() {
                         {/* Email */}
                         <div className="relative">
                           <label className={`absolute left-0 transition-all duration-300 pointer-events-none ${focusedField === 'email' || formData.email
-                              ? 'text-[10px] font-bold text-orange-600 -top-2 uppercase tracking-[0.2em]'
-                              : 'text-gray-400 top-4'
+                            ? 'text-[10px] font-bold text-orange-600 -top-2 uppercase tracking-[0.2em]'
+                            : 'text-gray-400 top-4'
                             }`}>
                             Email Address *
                           </label>
@@ -354,8 +354,8 @@ export default function Contact() {
                         {/* Phone */}
                         <div className="relative">
                           <label className={`absolute left-0 transition-all duration-300 pointer-events-none ${focusedField === 'phone' || formData.phone
-                              ? 'text-[10px] font-bold text-orange-600 -top-2 uppercase tracking-[0.2em]'
-                              : 'text-gray-400 top-4'
+                            ? 'text-[10px] font-bold text-orange-600 -top-2 uppercase tracking-[0.2em]'
+                            : 'text-gray-400 top-4'
                             }`}>
                             Phone Number
                           </label>
@@ -373,8 +373,8 @@ export default function Contact() {
                         {/* Company */}
                         <div className="relative">
                           <label className={`absolute left-0 transition-all duration-300 pointer-events-none ${focusedField === 'company' || formData.company
-                              ? 'text-[10px] font-bold text-orange-600 -top-2 uppercase tracking-[0.2em]'
-                              : 'text-gray-400 top-4'
+                            ? 'text-[10px] font-bold text-orange-600 -top-2 uppercase tracking-[0.2em]'
+                            : 'text-gray-400 top-4'
                             }`}>
                             Company Name
                           </label>
@@ -402,8 +402,8 @@ export default function Contact() {
                               type="button"
                               onClick={() => setFormData(prev => ({ ...prev, budget }))}
                               className={`py-3 px-4 rounded-full text-sm font-bold transition-all duration-300 ${formData.budget === budget
-                                  ? 'bg-orange-600 text-white'
-                                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                ? 'bg-orange-600 text-white'
+                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                 }`}
                             >
                               {budget}
@@ -415,8 +415,8 @@ export default function Contact() {
                       {/* Message */}
                       <div className="relative">
                         <label className={`absolute left-0 transition-all duration-300 pointer-events-none ${focusedField === 'message' || formData.message
-                            ? 'text-[10px] font-bold text-orange-600 -top-2 uppercase tracking-[0.2em]'
-                            : 'text-gray-400 top-4'
+                          ? 'text-[10px] font-bold text-orange-600 -top-2 uppercase tracking-[0.2em]'
+                          : 'text-gray-400 top-4'
                           }`}>
                           Tell us about your project *
                         </label>

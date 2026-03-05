@@ -17,6 +17,8 @@ const Work = lazy(() => import("./pages/Work"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
+import { SmoothScroll } from "@/components/SmoothScroll";
+
 const queryClient = new QueryClient();
 
 /* Loading component for Suspense fallback */
@@ -39,26 +41,28 @@ const App = () => {
         <Toaster />
         <Sonner />
 
-        {/* Router */}
-        <BrowserRouter>
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
+        <SmoothScroll>
+          {/* Router */}
+          <BrowserRouter>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
 
-              {/* Main Pages */}
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/services2" element={<Services2 />} />
-              <Route path="/blogs" element={<Blogs />} />
-              <Route path="/case-study" element={<CaseStudy />} />
-              <Route path="/work" element={<Work />} />
-              <Route path="/contact" element={<Contact />} />
+                {/* Main Pages */}
+                <Route path="/" element={<Index />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/services2" element={<Services2 />} />
+                <Route path="/blogs" element={<Blogs />} />
+                <Route path="/case-study" element={<CaseStudy />} />
+                <Route path="/work" element={<Work />} />
+                <Route path="/contact" element={<Contact />} />
 
-              {/* 404 */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
+                {/* 404 */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </SmoothScroll>
       </TooltipProvider>
     </QueryClientProvider>
   );

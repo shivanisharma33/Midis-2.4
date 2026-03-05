@@ -84,7 +84,7 @@ const AboutSection: React.FC = () => {
           {/* TOP LABEL */}
           <motion.p
             className="
-              text-[10px]
+              text-[12px]
               sm:text-[11px]
               md:text-[13px]
               tracking-[0.25em]
@@ -109,9 +109,10 @@ const AboutSection: React.FC = () => {
             className="
               uppercase
               font-extrabold
-              tracking-tight
               leading-[1.15]
-              text-[clamp(1.4rem,5.5vw,4rem)]
+              text-[30px]
+              tracking-[-1.6px]
+              lg:tracking-tight
               sm:text-[clamp(1.8rem,4.8vw,4rem)]
             "
             style={{ fontFamily: "Inter, sans-serif" }}
