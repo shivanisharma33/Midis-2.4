@@ -26,51 +26,42 @@ export const TeamSection: React.FC = () => {
       gsap.set([dedi, cated], { x: 0 });
       gsap.set(cards, { opacity: 0 });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=2400",
-          scrub: 1.2,
-          pin: true,
-        },
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "+=2400",
+            scrub: 1.2,
+            pin: true,
+          },
+        });
+
+        tl.to(lines, { y: 0, opacity: 1, stagger: 0.18, duration: 1, ease: "power4.out" });
+        tl.to([dedi, cated], { x: (i) => (i === 0 ? -140 : 140), duration: 1.2, ease: "power4.inOut" }, "-=0.4");
+        tl.to(heading, { opacity: 0, y: -80, duration: 0.9, ease: "power3.inOut" });
+        tl.to(cards, { opacity: 1, stagger: { each: 0.08, from: "center" }, duration: 1, ease: "power2.out" }, "-=0.3");
       });
 
-      tl.to(lines, {
-        y: 0,
-        opacity: 1,
-        stagger: 0.18,
-        duration: 1,
-        ease: "power4.out",
+      mm.add("(max-width: 767px)", () => {
+        // Mobile version: Much shorter pin, text simply fades, cards fade in.
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "+=600", // Massively reduced scrolling duration for mobile
+            scrub: 1,
+            pin: true,
+          },
+        });
+
+        tl.to(lines, { y: 0, opacity: 1, stagger: 0.1, duration: 1, ease: "power4.out" });
+        tl.to([dedi, cated], { x: (i) => (i === 0 ? -60 : 60), duration: 1.2, ease: "power4.inOut" }, "-=0.2");
+        tl.to(heading, { opacity: 0, y: -40, duration: 0.9, ease: "power3.inOut" });
+        tl.to(cards, { opacity: 1, stagger: { each: 0.05, from: "start" }, duration: 1, ease: "power2.out" }, "-=0.3");
       });
-
-      tl.to(
-        [dedi, cated],
-        {
-          x: (i) => (i === 0 ? -140 : 140),
-          duration: 1.2,
-          ease: "power4.inOut",
-        },
-        "-=0.4"
-      );
-
-      tl.to(heading, {
-        opacity: 0,
-        y: -80,
-        duration: 0.9,
-        ease: "power3.inOut",
-      });
-
-      tl.to(
-        cards,
-        {
-          opacity: 1,
-          stagger: { each: 0.08, from: "center" },
-          duration: 1,
-          ease: "power2.out",
-        },
-        "-=0.3"
-      );
     }, section);
 
     return () => ctx.revert();

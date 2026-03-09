@@ -29,24 +29,46 @@ export const CTASection = () => {
       });
 
       /* ================= PIN + IMAGE ZOOM ================= */
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=200%", // ~3 scrolls
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
-        },
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "+=200%", // ~2 scrolls
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+          },
+        });
+
+        tl.to(imageWrap, {
+          width: "150vw",
+          height: "150vh",
+          borderRadius: "0px",
+          ease: "power2.inOut",
+        });
       });
 
-      // Simply animate the inline image wrapper to massive dimensions.
-      // Because it's flex, it will naturally push the text out of the screen.
-      tl.to(imageWrap, {
-        width: "150vw",
-        height: "150vh",
-        borderRadius: "0px",
-        ease: "power2.inOut",
+      mm.add("(max-width: 767px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "+=100%", // Much shorter 1-scroll on mobile
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+          },
+        });
+
+        tl.to(imageWrap, {
+          width: "150vw",
+          height: "150vh",
+          borderRadius: "0px",
+          ease: "power2.inOut",
+        });
       });
     }, section);
 

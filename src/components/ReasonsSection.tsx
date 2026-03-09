@@ -81,7 +81,7 @@ export const ReasonsSection: React.FC = () => {
       ScrollTrigger.create({
         trigger: switchRef.current,
         start: "top top",
-        end: `+=${items.length * (isMobile ? 90 : 120)}%`,
+        end: `+=${items.length * (isMobile ? 35 : 120)}%`,
         scrub: true,
         pin: true,
         anticipatePin: 1,
