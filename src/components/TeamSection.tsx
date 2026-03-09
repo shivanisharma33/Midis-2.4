@@ -51,7 +51,7 @@ export const TeamSection: React.FC = () => {
           scrollTrigger: {
             trigger: section,
             start: "top top",
-            end: "+=1500", // Increased scrolling duration for mobile to make it slower
+            end: "+=2400", // Massively increased scrolling duration for mobile to make it much slower
             scrub: 1,
             pin: true,
           },
