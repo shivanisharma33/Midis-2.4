@@ -82,7 +82,7 @@ export const ServicesSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0B0B0B] py-32 md:py-64 antialiased text-white"
+      className="bg-[#0B0B0B] pt-12 pb-32 md:pt-12 md:pb-64 antialiased text-white"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
         {services.map((service, index) => {
@@ -94,7 +94,7 @@ export const ServicesSection = () => {
               className={`service-item border-white/5 transition-all duration-1000 ease-in-out border-t ${isActive ? "border-white/20" : "border-white/5"
                 }`}
             >
-              <div className="py-32 md:py-64">
+              <div className="pt-12 pb-32 md:pt-12 md:pb-64">
 
                 {/* 1. TITLE & NUMBER HEADER */}
                 <div className="relative w-full flex justify-between items-end group cursor-pointer pb-2">
