@@ -33,35 +33,20 @@ export const CTASection = () => {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=220%",
-          scrub: true,
+          end: "+=300%", // ~3 scrolls
+          scrub: 1,
           pin: true,
           anticipatePin: 1,
         },
       });
 
-      tl.to({}, { duration: 0.01 });
-
-      tl.set(imageWrap, {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        xPercent: -50,
-        yPercent: -50,
-        zIndex: 50,
-      });
-
-      tl.fromTo(
-        imageWrap,
-        { scale: 0.85 },
-        { scale: 1.15, ease: "none" }
-      );
-
+      // Simply animate the inline image wrapper to massive dimensions.
+      // Because it's flex, it will naturally push the text out of the screen.
       tl.to(imageWrap, {
-        width: "100vw",
-        height: "100vh",
-        borderRadius: 0,
-        ease: "none",
+        width: "150vw",
+        height: "150vh",
+        borderRadius: "0px",
+        ease: "power2.inOut",
       });
     }, section);
 
@@ -95,27 +80,27 @@ export const CTASection = () => {
           </span>
 
           {/* INLINE IMAGE */}
-          <span
-            ref={imageWrapRef}
-            className="
-              inline-flex
-              w-28
-              h-16
-              lg:w-36
-              lg:h-20
-              rounded-full
-              overflow-hidden
-              align-middle
-              will-change-transform
-            "
-          >
-            <img
-              src="/images/testimonial-bg.webp"
-              alt="CTA"
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover"
-            />
+          <span className="relative inline-flex w-28 h-16 lg:w-36 lg:h-20 shrink-0 align-middle">
+            <span
+              ref={imageWrapRef}
+              className="
+                absolute
+                top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                w-full h-full
+                rounded-full
+                overflow-hidden
+                will-change-transform
+                z-50
+              "
+            >
+              <img
+                src="/images/testimonial-bg.webp"
+                alt="CTA"
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover"
+              />
+            </span>
           </span>
 
           <span className="cta-text text-[clamp(30px,6vw,5rem)] font-extrabold overflow-hidden tracking-[-1.6px] lg:tracking-tighter">
