@@ -13,75 +13,68 @@ const FuelingYourGrowthWithFreshIdeas: React.FC = () => {
     const imagesWrapper = imagesRef.current;
     if (!container || !imagesWrapper) return;
 
-    const isMobile = window.innerWidth < 768;
-
     const imgs = gsap.utils.toArray<HTMLImageElement>(
       imagesWrapper.querySelectorAll("img")
     );
 
     if (imgs.length === 0) return;
 
-    if (isMobile) {
-      // Make images static on mobile - effectively stacking them or just showing them naturally
-      gsap.set(imgs, {
-        position: "relative",
-        height: "50vh",
-        autoAlpha: 1,
-        y: 0,
-        marginBottom: "1px"
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      // Desktop setup
+      imgs.forEach((img, i) => {
+        gsap.set(img, {
+          y: i === 0 ? 0 : 150,
+          autoAlpha: i === 0 ? 1 : 0,
+        });
       });
-      return;
-    }
 
-    imgs.forEach((img, i) => {
-      gsap.set(img, {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        y: i === 0 ? 0 : 150,
-        autoAlpha: i === 0 ? 1 : 0,
+      const tl = gsap.timeline();
+
+      imgs.forEach((img, i) => {
+        if (i !== 0) {
+          tl.to(
+            img,
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 1.2,
+              ease: "power2.out",
+            },
+            "+=0.15"
+          );
+
+          tl.to(
+            imgs[i - 1],
+            {
+              autoAlpha: 0,
+              duration: 1.0,
+              ease: "power2.out",
+            },
+            "<"
+          );
+        }
+      });
+
+      ScrollTrigger.create({
+        animation: tl,
+        trigger: container,
+        start: "top top",
+        end: () => `+=${imgs.length * window.innerHeight}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
       });
     });
 
-    const tl = gsap.timeline();
-
-    imgs.forEach((img, i) => {
-      if (i !== 0) {
-        tl.to(
-          img,
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 1.2,
-            ease: "power2.out",
-          },
-          "+=0.15"
-        );
-
-        tl.to(
-          imgs[i - 1],
-          {
-            autoAlpha: 0,
-            duration: 1.0,
-            ease: "power2.out",
-          },
-          "<"
-        );
-      }
+    mm.add("(max-width: 767px)", () => {
+      // On mobile we don't need GSAP animations, 
+      // Tailwind will handle the responsive layout naturally
+      gsap.set(imgs, { clearProps: "all" });
     });
 
-    ScrollTrigger.create({
-      animation: tl,
-      trigger: container,
-      start: "top top",
-      end: `+=${imgs.length * window.innerHeight}`,
-      scrub: 1,
-      pin: true,
-      anticipatePin: 1,
-    });
+    return () => mm.revert();
   }, []);
 
   return (
@@ -94,34 +87,45 @@ const FuelingYourGrowthWithFreshIdeas: React.FC = () => {
         <div
           ref={imagesRef}
           className="
-            relative overflow-hidden
-            w-full md:w-1/2
-            min-h-[60vh] sm:min-h-[70vh] md:min-h-[100svh]
+            relative w-full md:w-1/2
+            flex flex-col md:block
+            md:overflow-hidden md:min-h-[100svh]
           "
         >
-          <img src="/images/fresh-idea-3.webp" />
-          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80" />
-          <img src="/images/fresh-idea-2.webp" />
+          <img
+            src="/images/fresh-idea-3.webp"
+            alt="Growth Idea 1"
+            className="w-full h-[50vh] sm:h-[60vh] object-cover md:absolute md:top-0 md:left-0 md:h-full md:w-full"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80"
+            alt="Growth Idea 2"
+            className="hidden md:block w-full h-[50vh] sm:h-[60vh] object-cover mb-1 md:mb-0 md:absolute md:top-0 md:left-0 md:h-full md:w-full"
+          />
+          <img
+            src="/images/fresh-idea-2.webp"
+            alt="Growth Idea 3"
+            className="hidden md:block w-full h-[50vh] sm:h-[60vh] object-cover md:absolute md:top-0 md:left-0 md:h-full md:w-full"
+          />
         </div>
 
         {/* RIGHT CONTENT */}
         <div className="w-full md:w-1/2 bg-white">
           <div
             className="
-              md:sticky top-0
-              min-h-[auto] md:min-h-[100svh]
+              md:sticky md:top-0
               flex flex-col justify-center
               px-6 sm:px-10 md:px-20
-              py-12 md:py-0
+              py-16 md:py-0 md:min-h-[100svh]
             "
           >
-            <h1 className="font-extrabold text-black leading-[1.1] mb-6 text-[42px] sm:text-[45px] md:text-[55px]">
+            <h1 className="font-extrabold text-black leading-[1.1] mb-6 text-[38px] sm:text-[45px] md:text-[55px]">
               EMPOWERING <br />
               DIGITAL GROWTH <br />
               FOR STARTUPS
             </h1>
 
-            <p className="text-[18px] sm:text-[17px] text-gray-600 leading-7 max-w-[480px] mb-8">
+            <p className="text-[16px] sm:text-[17px] text-gray-600 leading-7 max-w-[480px] mb-8">
               We blend performance with creativity to offer powerful digital marketing strategies—SEO,
               branding, and social media solutions that get results for global brands.
             </p>
