@@ -115,7 +115,7 @@ export const ReasonsSection: React.FC = () => {
   return (
     <section ref={sectionRef} className="bg-white overflow-hidden">
       {/* ================= HEADING ================= */}
-      <div className="min-h-[70vh] md:min-h-[80vh] flex items-center">
+      <div className="py-20 md:py-0 md:min-h-[80vh] flex items-center">
         <div className="max-w-7xl w-full px-4 sm:px-6 md:px-16 lg:px-24">
           <h2
             className="uppercase font-extrabold leading-[1.05] text-black

@@ -78,7 +78,7 @@ export const CTASection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-white overflow-hidden flex items-center"
+      className="relative min-h-[60svh] md:min-h-[100svh] bg-white overflow-hidden flex items-center"
     >
       {/* 👇 text-black added here */}
       <div className="relative z-10 container mx-auto px-6 lg:px-12 text-center text-black">

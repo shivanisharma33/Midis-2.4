@@ -114,7 +114,7 @@ export const TeamSection: React.FC = () => {
 
     <section
       ref={sectionRef}
-      className="relative bg-[#0B0C0E] overflow-hidden h-screen min-h-[700px]"
+      className="relative bg-[#0B0C0E] overflow-hidden h-[100svh] min-h-[100svh] md:h-screen md:min-h-[700px]"
     >
       {/* ================= HEADING ================= */}
       <div className="absolute inset-0 flex items-center justify-center z-20 px-6 pointer-events-none">
