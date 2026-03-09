@@ -33,7 +33,7 @@ export const CTASection = () => {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=300%", // ~3 scrolls
+          end: "+=200%", // ~3 scrolls
           scrub: 1,
           pin: true,
           anticipatePin: 1,
